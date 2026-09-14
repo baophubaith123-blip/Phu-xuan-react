@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Vanilla JS Counter</title>
+</head>
+<body>
+    <h1>Vanilla JS Counter</h1>
+    <button id="btn">Click</button> <span id="count">0</span>
+
+    <script>
+        const btn = document.getElementById('btn');
+        const countSpan = document.getElementById('count');
+        let count = 0;
+        
+        btn.addEventListener('click', () => {
+            count++;
+            countSpan.textContent = count; // Phải chỉ định rõ việc cập nhật UI
+        });
+    </script>
+</body>
+</html>

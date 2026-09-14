@@ -1,17 +1,24 @@
-// App.tsx — thành phần gốc, tập hợp các thành phần con
+// App.tsx — trang chủ phu-xuan-react v0.1
+// Buổi 2 · INT.7.18 — Web FrontEnd nâng cao
 
-// Nhập thành phần Header vừa tạo
 import Header from './components/Header'
+import WelcomeBanner from './components/WelcomeBanner'
+import PostCard from './components/PostCard'
+import Footer from './components/Footer'
 
 function App() {
   return (
-    <div>
-      {/* Dùng Header như một thẻ HTML — đây là cú pháp JSX gọi thành phần */}
+    // Fragment <> </> cho phép trả về nhiều thẻ ngang cấp
+    // mà không cần bọc trong <div> thừa
+    <>
       <Header />
       <main>
-        <p>Nội dung chính sẽ được xây dựng ở các buổi sau.</p>
+        <WelcomeBanner />
+        {/* PostCard hiển thị một bài viết mẫu */}
+        <PostCard />
       </main>
-    </div>
+      <Footer />
+    </>
   )
 }
 

@@ -1,16 +1,18 @@
-import { useState } from 'react';
+// App.tsx — thành phần gốc, tập hợp các thành phần con
+
+// Nhập thành phần Header vừa tạo
+import Header from './components/Header'
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <div>
-      <h1>React Counter</h1>
-      <button onClick={() => setCount(count + 1)}>
-        Click {count}
-      </button>
+      {/* Dùng Header như một thẻ HTML — đây là cú pháp JSX gọi thành phần */}
+      <Header />
+      <main>
+        <p>Nội dung chính sẽ được xây dựng ở các buổi sau.</p>
+      </main>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

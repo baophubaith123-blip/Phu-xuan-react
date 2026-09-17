@@ -1,0 +1,82 @@
+/* Bai8.css — Style cho Bài 8: Biểu mẫu có kiểm soát */
+
+.trang-Bai8 {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 24px;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+.trang-Bai8 h1 {
+  color: #1b2a4a;
+  margin-bottom: 24px;
+}
+
+/* --- Form chung --- */
+.form-dia-diem {
+  border: 1px solid #c9d3de;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin: 20px 0;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.form-dia-diem h2 {
+  color: #0f6e6a;
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 1.15rem;
+}
+
+/* --- Mỗi trường nhập --- */
+.truong {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.truong label {
+  font-weight: 600;
+  color: #1f2937;
+  font-size: 0.9rem;
+}
+
+.truong input,
+.truong textarea,
+.truong select {
+  padding: 8px 12px;
+  border: 1px solid #c9d3de;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  outline: none;
+  background: #fff;
+}
+
+.truong input:focus,
+.truong textarea:focus,
+.truong select:focus {
+  border-color: #0f6e6a;
+  box-shadow: 0 0 0 3px rgba(15, 110, 106, 0.15);
+}
+
+.truong textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* --- Debug --- */
+.debug-json {
+  background: #f3f4f6;
+  border: 1px solid #c9d3de;
+  border-radius: 6px;
+  padding: 12px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  color: #1f2937;
+  overflow-x: auto;
+  max-height: 240px;
+}

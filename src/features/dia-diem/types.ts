@@ -1,6 +1,4 @@
-// types.ts — Interface dùng chung cho module địa điểm
-// Buổi 8 · INT.7.18
-
+// types.ts
 export interface DuLieuForm {
   ten: string;
   moTa: string;
@@ -8,4 +6,5 @@ export interface DuLieuForm {
   phuong: string;
   loaiHinh: string;
   dongY: boolean;
+  tienIch: string[];   // ← Thêm dòng này
 }

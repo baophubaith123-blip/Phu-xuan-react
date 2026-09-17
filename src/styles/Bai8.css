@@ -20,7 +20,7 @@
 }
 
 /* ============================================================
-   Lab 1 — Form chung
+   Lab 1 Buổi 8 — Form chung
    ============================================================ */
 
 .form-dia-diem {
@@ -30,6 +30,7 @@
   margin: 20px 0;
   background: #ffffff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  border-left: 4px solid #0f6e6a;   /* Viền trái xanh teal — phân biệt form */
 }
 
 .form-dia-diem h2 {
@@ -95,7 +96,6 @@
    Lab 2 Buổi 8 — Radio, checkbox, fieldset
    ============================================================ */
 
-/* --- Fieldset nhóm (Loại hình, Tiện ích) --- */
 .form-dia-diem fieldset {
   border: 1px solid #c9d3de;
   border-radius: 8px;
@@ -110,7 +110,6 @@
   font-size: 0.9rem;
 }
 
-/* --- Label trong fieldset (radio/checkbox) --- */
 .form-dia-diem fieldset label {
   display: flex;
   align-items: center;
@@ -137,7 +136,6 @@
   margin: 0;
 }
 
-/* --- Hộp kiểm xác nhận (ngoài fieldset) --- */
 .form-dia-diem > label.hop-kiem-xac-nhan {
   display: flex;
   align-items: center;
@@ -169,7 +167,6 @@
    Lab 3 Buổi 8 — Thông báo lỗi, trạng thái gửi
    ============================================================ */
 
-/* --- Thông báo lỗi dưới mỗi ô --- */
 .thong-bao-loi {
   color: #be123c;
   font-size: 0.8rem;
@@ -186,7 +183,6 @@
   font-style: normal;
 }
 
-/* --- Input có lỗi — viền đỏ --- */
 .truong input[aria-invalid='true'],
 .truong textarea[aria-invalid='true'],
 .truong select[aria-invalid='true'] {
@@ -200,7 +196,6 @@
   box-shadow: 0 0 0 3px rgba(190, 18, 60, 0.15);
 }
 
-/* --- Thông báo thành công --- */
 .thong-bao-thanh-cong {
   color: #15803d;
   background: #f0fdf4;
@@ -216,7 +211,6 @@
   content: '✓ ';
 }
 
-/* --- Thông báo thất bại --- */
 .thong-bao-that-bai {
   color: #be123c;
   background: #fff5f5;
@@ -228,7 +222,6 @@
   font-size: 0.9rem;
 }
 
-/* --- Nhóm nút cuối form --- */
 .nhom-nut {
   display: flex;
   gap: 8px;
@@ -270,4 +263,46 @@
   background: #f0f9f9;
   border-color: #0f6e6a;
   color: #0f6e6a;
+}
+
+/* ============================================================
+   Lab 4 Buổi 8 — Form Góp ý (dùng chung hook useForm)
+   ============================================================ */
+
+.form-gop-y {
+  border: 1px solid #c9d3de;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin: 20px 0;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  border-left: 4px solid #b8860b;   /* Viền trái vàng — phân biệt với form địa điểm */
+}
+
+.form-gop-y h2 {
+  color: #b8860b;
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 1.15rem;
+}
+
+/* ✅ Form góp ý cũng dùng chung class .truong — nên chỉ cần định nghĩa thêm
+   các rule đặc thù (nếu có). Hiện tại không cần gì thêm vì .truong,
+   .thong-bao-loi, .nhom-nut đều đã được định nghĩa chung ở trên. */
+
+/* --- Tinh chỉnh riêng cho form góp ý (nếu muốn) --- */
+.form-gop-y .truong input:focus,
+.form-gop-y .truong textarea:focus {
+  border-color: #b8860b;
+  box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.15);
+}
+
+.form-gop-y .nhom-nut button[type='submit'] {
+  background: #b8860b;
+  border-color: #b8860b;
+}
+
+.form-gop-y .nhom-nut button[type='submit']:hover:not(:disabled) {
+  background: #966d09;
+  border-color: #966d09;
 }

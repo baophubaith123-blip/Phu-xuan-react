@@ -1,693 +1,308 @@
 /* ============================================================
-   App.css — phu-xuan-react
-   Buổi 5–6 · INT.7.18 — Web FrontEnd nâng cao
+   Bai8.css — Style cho Bài 8: Biểu mẫu có kiểm soát
+   Buổi 8 · INT.7.18 — Web FrontEnd nâng cao
    ============================================================ */
 
-/* --- Reset & Typography cơ bản --- */
-* {
-  box-sizing: border-box;
-}
+/* ============================================================
+   Layout chung trang Bài 8
+   ============================================================ */
 
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  color: #1f2937;
-  background: #f9fafb;
-  line-height: 1.5;
-}
-
-h1, h2, h3 {
-  margin: 0 0 0.5rem;
-  color: #111827;
-}
-
-p {
-  margin: 0 0 0.5rem;
-}
-
-/* --- Layout chính của App --- */
-.app {
-  max-width: 1000px;
+.trang-Bai8 {
+  max-width: 880px;
   margin: 0 auto;
-  padding: 2rem 1.5rem;
+  padding: 24px;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 }
 
-.app > h1 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
-  color: #0f766e;
+.trang-Bai8 h1 {
+  color: #1b2a4a;
+  margin-bottom: 24px;
 }
 
 /* ============================================================
-   Lab 1 Buổi 5 — Attraction List & Card
+   Lab 1 Buổi 8 — Form chung
    ============================================================ */
 
-.attraction-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.25rem;
-  margin-top: 1rem;
-}
-
-.attraction-card {
-  position: relative;
-  border: 1px solid #e5e7eb;
+.form-dia-diem {
+  border: 1px solid #c9d3de;
   border-radius: 12px;
-  padding: 1.25rem;
+  padding: 20px 24px;
+  margin: 20px 0;
   background: #ffffff;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  display: flex;
-  flex-direction: column;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  border-left: 4px solid #0f6e6a;   /* Viền trái xanh teal — phân biệt form */
 }
 
-.attraction-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
-
-.attraction-card__badge {
-  display: inline-block;
-  align-self: flex-start;
-  background: #e0f2fe;
-  color: #0369a1;
-  padding: 3px 10px;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.attraction-card h3 {
+.form-dia-diem h2 {
+  color: #0f6e6a;
+  margin-top: 0;
+  margin-bottom: 16px;
   font-size: 1.15rem;
-  margin-bottom: 0.5rem;
-  color: #111827;
 }
 
-.attraction-card p {
-  font-size: 0.9rem;
-  color: #4b5563;
-  flex-grow: 1;
-  margin-bottom: 0.75rem;
-}
-
-.attraction-card__rating {
-  display: inline-block;
-  color: #f59e0b;
-  font-weight: 700;
-  font-size: 0.95rem;
-  margin-top: auto;
-  align-self: flex-start;
-}
-
-/* ============================================================
-   Lab 2 Buổi 5 — Nút yêu thích (Favorite Button)
-   ============================================================ */
-
-.attraction-card__favorite {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 20px;
-  padding: 4px 12px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #6b7280;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-family: inherit;
-}
-
-.attraction-card__favorite:hover {
-  background: #fef2f2;
-  border-color: #fca5a5;
-  color: #dc2626;
-  transform: scale(1.05);
-}
-
-.attraction-card__favorite.is-active {
-  background: #dc2626;
-  border-color: #dc2626;
-  color: #ffffff;
-}
-
-.attraction-card__favorite.is-active:hover {
-  background: #b91c1c;
-  border-color: #b91c1c;
-}
-
-/* ============================================================
-   Lab 3 Buổi 5 — Bộ lọc danh mục (Category Tabs)
-   ============================================================ */
-
-.category-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: center;
-  margin: 1.5rem 0;
-}
-
-.category-tabs button {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 20px;
-  padding: 6px 16px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #4b5563;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-family: inherit;
-}
-
-.category-tabs button:hover {
-  background: #f0fdfa;
-  border-color: #5eead4;
-  color: #0f766e;
-}
-
-.category-tabs button.is-active {
-  background: #0f766e;
-  border-color: #0f766e;
-  color: #ffffff;
-  box-shadow: 0 2px 8px rgba(15, 118, 110, 0.3);
-}
-
-.category-tabs button.is-active:hover {
-  background: #115e59;
-  border-color: #115e59;
-}
-
-/* ============================================================
-   Lab 4 Buổi 5 — Đánh giá bằng sao (StarRating)
-   ============================================================ */
-
-.star-rating {
-  margin-top: 0.75rem;
-  padding-top: 0.75rem;
-  border-top: 1px dashed #e5e7eb;
-}
-
-.star-rating__stars {
-  display: flex;
-  gap: 2px;
-  margin-bottom: 4px;
-}
-
-.star-rating .star {
-  font-size: 1.5rem;
-  color: #d1d5db;
-  cursor: pointer;
-  transition: color 0.15s ease, transform 0.15s ease;
-  user-select: none;
-}
-
-.star-rating .star:hover {
-  transform: scale(1.2);
-}
-
-.star-rating .star.is-filled {
-  color: #f59e0b;
-}
-
-.star-rating__label {
-  font-size: 0.8rem;
-  color: #6b7280;
-  margin: 0;
-  font-style: italic;
-}
-
-/* ============================================================
-   Lab 5 Buổi 5 — Bộ đếm vé tham quan (TicketCounter)
-   ============================================================ */
-
-.ticket-counter {
-  margin-top: 0.75rem;
-  padding: 0.75rem;
-  background: #f0fdfa;
-  border: 1px solid #5eead4;
-  border-radius: 8px;
-}
-
-.ticket-counter__label {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #0f766e;
-  margin: 0 0 0.5rem;
-}
-
-.ticket-counter__controls {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 0.5rem;
-}
-
-.ticket-counter__controls button {
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
-  border: 1px solid #0f766e;
-  background: #ffffff;
-  color: #0f766e;
-  font-size: 1.1rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: inherit;
-}
-
-.ticket-counter__controls button:hover:not(:disabled) {
-  background: #0f766e;
-  color: #ffffff;
-  transform: scale(1.05);
-}
-
-.ticket-counter__controls button:disabled {
-  opacity: 0.35;
-  cursor: not-allowed;
-  background: #e5e7eb;
-  border-color: #d1d5db;
-  color: #9ca3af;
-}
-
-.ticket-counter__quantity {
-  min-width: 32px;
-  text-align: center;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #0f766e;
-}
-
-.ticket-counter__total {
-  font-size: 0.9rem;
-  color: #4b5563;
-  margin: 0;
-}
-
-.ticket-counter__total strong {
-  color: #dc2626;
-  font-size: 1rem;
-}
-
-/* ============================================================
-   Lab 1 Buổi 6 — Đồng hồ đếm lượt xem (LuotXemDaiNoi)
-   ============================================================ */
-
-.the-luot-xem {
-  padding: 1rem;
-  background: #ffffff;
-  border-radius: 8px;
-  border: 1px solid #e5e7eb;
-}
-
-.the-luot-xem h3 {
-  color: #0f766e;
-  margin-bottom: 0.25rem;
-  font-size: 1.1rem;
-}
-
-.the-luot-xem p {
-  color: #dc2626;
-  font-weight: 700;
-  font-size: 1rem;
-  margin: 0;
-}
-
-/* ============================================================
-   Lab 2 Buổi 6 — Chi tiết món ăn (TrangMonAn & ChiTietMonAn)
-   ============================================================ */
-
-.trang-mon-an h2 {
-  color: #be185d;
-  font-size: 1.1rem;
-  margin-bottom: 0.75rem;
-}
-
-.trang-mon-an__buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 1rem;
-}
-
-.trang-mon-an__buttons button {
-  padding: 6px 14px;
-  border-radius: 6px;
-  border: 1px solid #f9a8d4;
-  background: #ffffff;
-  color: #be185d;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 0.85rem;
-  transition: all 0.2s ease;
-  font-family: inherit;
-}
-
-.trang-mon-an__buttons button:hover {
-  background: #fce7f3;
-}
-
-.trang-mon-an__buttons button.is-active {
-  background: #be185d;
-  border-color: #be185d;
-  color: #ffffff;
-}
-
-.chi-tiet-mon-an {
-  padding: 1rem;
-  background: #ffffff;
-  border-radius: 8px;
-  border: 1px solid #e5e7eb;
-  min-height: 100px;
-}
-
-.chi-tiet-mon-an h3 {
-  color: #be185d;
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
-}
-
-.chi-tiet-mon-an p {
-  color: #4b5563;
-  font-size: 0.9rem;
-  margin: 0;
-}
-
-.chi-tiet-mon-an__loading {
-  color: #6b7280;
-  font-style: italic;
-  padding: 1rem;
-}
-
-.chi-tiet-mon-an__error {
-  color: #dc2626;
-  padding: 1rem;
-}
-
-/* ============================================================
-   Lab 3 Buổi 6 — Ô tìm kiếm tự động focus (TimMonAn)
-   ============================================================ */
-
-.tim-mon-an {
-  padding: 1rem;
-  background: #ffffff;
-  border-radius: 8px;
-  border: 1px solid #e5e7eb;
-}
-
-.tim-mon-an__input {
-  width: 100%;
-  padding: 10px 14px;
-  border: 2px solid #c4b5fd;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-family: inherit;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  outline: none;
-}
-
-.tim-mon-an__input:focus {
-  border-color: #7c3aed;
-  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
-}
-
-.tim-mon-an__input::placeholder {
-  color: #9ca3af;
-}
-
-.tim-mon-an__render-count {
-  margin-top: 0.75rem;
-  font-size: 0.85rem;
-  color: #7c3aed;
-  font-weight: 600;
-  font-style: italic;
-}
-
-/* ============================================================
-   Lab 4 Buổi 6 — Danh sách địa danh (useMemo + useCallback)
-   ============================================================ */
-
-.danh-sach-dia-danh {
-  padding: 1rem;
-  background: #ffffff;
-  border-radius: 8px;
-  border: 1px solid #e5e7eb;
-}
-
-.danh-sach-dia-danh__input {
-  width: 100%;
-  padding: 10px 14px;
-  border: 2px solid #93c5fd;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-family: inherit;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  outline: none;
-  margin-bottom: 0.75rem;
-}
-
-.danh-sach-dia-danh__input:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
-}
-
-.danh-sach-dia-danh__input::placeholder {
-  color: #9ca3af;
-}
-
-.danh-sach-dia-danh__info {
-  font-size: 0.85rem;
-  color: #4b5563;
-  margin-bottom: 0.75rem;
-}
-
-.danh-sach-dia-danh__list {
+/* --- Mỗi trường nhập --- */
+.truong {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
+  margin-bottom: 16px;
 }
 
-.the-dia-danh {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 14px;
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
+.truong label {
+  font-weight: 600;
+  color: #1f2937;
+  font-size: 0.9rem;
+}
+
+.truong input,
+.truong textarea,
+.truong select {
+  padding: 8px 12px;
+  border: 1px solid #c9d3de;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  outline: none;
+  background: #fff;
+}
+
+.truong input:focus,
+.truong textarea:focus,
+.truong select:focus {
+  border-color: #0f6e6a;
+  box-shadow: 0 0 0 3px rgba(15, 110, 106, 0.15);
+}
+
+.truong textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* --- Debug (dùng tạm ở Bước 3, xóa ở Bước 4) --- */
+.debug-json {
+  background: #f3f4f6;
+  border: 1px solid #c9d3de;
+  border-radius: 6px;
+  padding: 12px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  color: #1f2937;
+  overflow-x: auto;
+  max-height: 240px;
+}
+
+/* ============================================================
+   Lab 2 Buổi 8 — Radio, checkbox, fieldset
+   ============================================================ */
+
+.form-dia-diem fieldset {
+  border: 1px solid #c9d3de;
   border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+}
+
+.form-dia-diem legend {
+  font-weight: 600;
+  color: #0f6e6a;
+  padding: 0 6px;
+  font-size: 0.9rem;
+}
+
+.form-dia-diem fieldset label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 4px;
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: #1f2937;
+  cursor: pointer;
+  border-radius: 4px;
   transition: background 0.15s ease;
 }
 
-.the-dia-danh:hover {
-  background: #f3f4f6;
+.form-dia-diem fieldset label:hover {
+  background: #f0f9f9;
 }
 
-.the-dia-danh h4 {
-  font-size: 0.95rem;
-  margin: 0 0 2px;
-  color: #111827;
-}
-
-.the-dia-danh__khu-vuc {
-  font-size: 0.8rem;
-  color: #6b7280;
+.form-dia-diem fieldset input[type='radio'],
+.form-dia-diem fieldset input[type='checkbox'] {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  accent-color: #0f6e6a;
   margin: 0;
 }
 
-.the-dia-danh__btn {
-  padding: 4px 10px;
-  border-radius: 6px;
-  border: 1px solid #93c5fd;
-  background: #ffffff;
-  color: #2563eb;
+.form-dia-diem > label.hop-kiem-xac-nhan {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  margin-bottom: 16px;
+  background: #f9fafb;
+  border: 1px solid #c9d3de;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: background 0.15s ease;
+}
+
+.form-dia-diem > label.hop-kiem-xac-nhan:hover {
+  background: #f0f9f9;
+}
+
+.form-dia-diem > label.hop-kiem-xac-nhan input[type='checkbox'] {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  accent-color: #0f6e6a;
+  margin: 0;
+}
+
+/* ============================================================
+   Lab 3 Buổi 8 — Thông báo lỗi, trạng thái gửi
+   ============================================================ */
+
+.thong-bao-loi {
+  color: #be123c;
   font-size: 0.8rem;
+  margin: 0;
+  padding: 2px 0 0;
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.thong-bao-loi::before {
+  content: '⚠';
+  font-style: normal;
+}
+
+.truong input[aria-invalid='true'],
+.truong textarea[aria-invalid='true'],
+.truong select[aria-invalid='true'] {
+  border-color: #be123c;
+  background: #fff5f5;
+}
+
+.truong input[aria-invalid='true']:focus,
+.truong textarea[aria-invalid='true']:focus,
+.truong select[aria-invalid='true']:focus {
+  box-shadow: 0 0 0 3px rgba(190, 18, 60, 0.15);
+}
+
+.thong-bao-thanh-cong {
+  color: #15803d;
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.thong-bao-thanh-cong::before {
+  content: '✓ ';
+}
+
+.thong-bao-that-bai {
+  color: #be123c;
+  background: #fff5f5;
+  border: 1px solid #f9a8a8;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.nhom-nut {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.nhom-nut button {
+  margin: 0;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: 1px solid #c9d3de;
+  background: #fff;
+  font-family: inherit;
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.15s ease;
-  font-family: inherit;
-  white-space: nowrap;
 }
 
-.the-dia-danh__btn:hover {
-  background: #2563eb;
-  color: #ffffff;
+.nhom-nut button[type='submit'] {
+  background: #0f6e6a;
+  border-color: #0f6e6a;
+  color: #fff;
+}
+
+.nhom-nut button[type='submit']:hover:not(:disabled) {
+  background: #0a5c58;
+  border-color: #0a5c58;
+}
+
+.nhom-nut button[type='submit']:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: #9ca3af;
+  border-color: #9ca3af;
+}
+
+.nhom-nut button[type='button']:hover {
+  background: #f0f9f9;
+  border-color: #0f6e6a;
+  color: #0f6e6a;
 }
 
 /* ============================================================
-   Lab 5 Buổi 6 — Custom Hook useDebounce (TimMonAnDebounce)
+   Lab 4 Buổi 8 — Form Góp ý (dùng chung hook useForm)
    ============================================================ */
 
-.tim-mon-an-debounce {
-  padding: 1rem;
+.form-gop-y {
+  border: 1px solid #c9d3de;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin: 20px 0;
   background: #ffffff;
-  border-radius: 8px;
-  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  border-left: 4px solid #b8860b;   /* Viền trái vàng — phân biệt với form địa điểm */
 }
 
-.tim-mon-an-debounce__input {
-  width: 100%;
-  padding: 10px 14px;
-  border: 2px solid #86efac;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-family: inherit;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  outline: none;
-  margin-bottom: 0.75rem;
+.form-gop-y h2 {
+  color: #b8860b;
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 1.15rem;
 }
 
-.tim-mon-an-debounce__input:focus {
-  border-color: #16a34a;
-  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.15);
+/* ✅ Form góp ý cũng dùng chung class .truong — nên chỉ cần định nghĩa thêm
+   các rule đặc thù (nếu có). Hiện tại không cần gì thêm vì .truong,
+   .thong-bao-loi, .nhom-nut đều đã được định nghĩa chung ở trên. */
+
+/* --- Tinh chỉnh riêng cho form góp ý (nếu muốn) --- */
+.form-gop-y .truong input:focus,
+.form-gop-y .truong textarea:focus {
+  border-color: #b8860b;
+  box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.15);
 }
 
-.tim-mon-an-debounce__input::placeholder {
-  color: #9ca3af;
+.form-gop-y .nhom-nut button[type='submit'] {
+  background: #b8860b;
+  border-color: #b8860b;
 }
 
-.tim-mon-an-debounce__hint {
-  font-size: 0.85rem;
-  color: #6b7280;
-  margin-bottom: 0.5rem;
-}
-
-.tim-mon-an-debounce__hint code {
-  background: #f3f4f6;
-  padding: 2px 6px;
-  border-radius: 4px;
-  color: #16a34a;
-  font-size: 0.85rem;
-  font-family: 'Courier New', monospace;
-}
-
-.tim-mon-an-debounce__result {
-  font-size: 0.9rem;
-  color: #4b5563;
-  margin-bottom: 0.75rem;
-  padding: 8px 12px;
-  background: #f0fdf4;
-  border-radius: 6px;
-}
-
-.tim-mon-an-debounce__result strong {
-  color: #16a34a;
-}
-
-.tim-mon-an-debounce__list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.tim-mon-an-debounce__list li {
-  padding: 10px 14px;
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  color: #111827;
-}
-
-.tim-mon-an-debounce__mo-ta {
-  font-size: 0.8rem;
-  color: #6b7280;
-}
-
-.tim-mon-an-debounce__empty {
-  text-align: center;
-  color: #9ca3af;
-  font-style: italic;
-  background: #fef3c7 !important;
-  border-color: #fbbf24 !important;
-}
-
-/* ============================================================
-   Responsive cho mobile
-   ============================================================ */
-@media (max-width: 640px) {
-  .app {
-    padding: 1rem;
-  }
-
-  .app > h1 {
-    font-size: 1.5rem;
-  }
-
-  .attraction-list {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .attraction-card__favorite {
-    top: 8px;
-    right: 8px;
-    font-size: 0.75rem;
-    padding: 3px 10px;
-  }
-
-  .category-tabs {
-    gap: 6px;
-    margin: 1rem 0;
-  }
-
-  .category-tabs button {
-    padding: 5px 12px;
-    font-size: 0.8rem;
-  }
-
-  .star-rating .star {
-    font-size: 1.25rem;
-  }
-
-  .ticket-counter__controls button {
-    width: 28px;
-    height: 28px;
-    font-size: 1rem;
-  }
-
-  .trang-mon-an__buttons button {
-    padding: 5px 10px;
-    font-size: 0.8rem;
-  }
-
-  .tim-mon-an__input {
-    font-size: 0.95rem;
-    padding: 8px 12px;
-  }
-
-  .danh-sach-dia-danh__input {
-    font-size: 0.95rem;
-    padding: 8px 12px;
-  }
-
-  .the-dia-danh {
-    padding: 8px 12px;
-  }
-
-  .the-dia-danh h4 {
-    font-size: 0.9rem;
-  }
-
-  .tim-mon-an-debounce__input {
-    font-size: 0.95rem;
-    padding: 8px 12px;
-  }
-
-  .tim-mon-an-debounce__list li {
-    padding: 8px 12px;
-    font-size: 0.85rem;
-  }
+.form-gop-y .nhom-nut button[type='submit']:hover:not(:disabled) {
+  background: #966d09;
+  border-color: #966d09;
 }

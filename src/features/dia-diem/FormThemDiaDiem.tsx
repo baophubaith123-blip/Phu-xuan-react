@@ -1,9 +1,10 @@
-// FormThemDiaDiem.tsx — Form thêm địa điểm tham quan
-// Buổi 8 · Lab 1+2+3: Biểu mẫu có kiểm soát đầy đủ + validation + submit
+// FormThemDiaDiem.tsx — Form thêm địa điểm (dùng hook useForm)
+// Buổi 8 · Lab 4: Rút gọn logic vào Custom Hook + thông báo thành công
 // INT.7.18 — Web FrontEnd nâng cao
 
 import { useState } from 'react';
-import type { ChangeEvent, FormEvent, FocusEvent } from 'react';
+import type { ChangeEvent } from 'react';
+import { useForm } from '../../hooks/useForm';
 import { kiemChung } from './kiemChung';
 import type { DuLieuForm } from './types';
 
@@ -15,6 +16,7 @@ const GIA_TRI_BAN_DAU: DuLieuForm = {
   phuong: '',
   loaiHinh: 'di-tich',
   dongY: false,
+  tienIch: [],
 };
 
 interface TienIch {
@@ -29,93 +31,71 @@ const DS_TIEN_ICH: TienIch[] = [
   { ma: 'khu-ve-sinh', ten: 'Khu vệ sinh công cộng' },
 ];
 
-// ✅ Kiểu trạng thái gửi (4 giá trị)
-type TrangThaiGui = 'cho' | 'dang-gui' | 'thanh-cong' | 'that-bai';
+interface FormThemDiaDiemProps {
+  onThemXong?: (duLieu: DuLieuForm) => void;
+}
 
-export default function FormThemDiaDiem() {
-  const [duLieu, setDuLieu] = useState<DuLieuForm>(GIA_TRI_BAN_DAU);
-  const [tienIch, setTienIch] = useState<string[]>([]);
+export default function FormThemDiaDiem({ onThemXong }: FormThemDiaDiemProps) {
+  // ✅ Hook quản lý state/handler/validation
+  const {
+    duLieu,
+    setDuLieu,
+    dangGui,
+    xuLyThayDoi,
+    xuLyRoiO,
+    loiCuaO,
+    xuLyGui,
+    datLai,
+  } = useForm(GIA_TRI_BAN_DAU, kiemChung);
 
-  // ✅ State Lab 3: Đánh dấu ô nào đã "chạm" (blur)
-  const [daCham, setDaCham] = useState<Record<string, boolean>>({});
+  // ✅ State riêng của form này — thông báo thành công
+  const [thongBao, setThongBao] = useState<string>('');
 
-  // ✅ State Lab 3: Trạng thái gửi (4 giá trị)
-  const [trangThai, setTrangThai] = useState<TrangThaiGui>('cho');
-
-  // ✅ Lỗi là TRẠNG THÁI DẪN XUẤT — tính lại mỗi lần render, KHÔNG lưu state
-  const loi = kiemChung(duLieu);
-
-  // --- Handler duy nhất cho mọi ô object ---
-  function xuLyThayDoi(
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) {
-    const target = e.target as HTMLInputElement;
-    const { name, value, type, checked } = target;
-
+  // ✅ Handler riêng cho nhóm tiện ích (vì lưu vào mảng)
+  function xuLyTich(e: ChangeEvent<HTMLInputElement>) {
+    const { value, checked } = e.target;
     setDuLieu((truoc) => ({
       ...truoc,
-      [name]: type === 'checkbox' ? checked : value,
+      tienIch: checked
+        ? [...truoc.tienIch, value]
+        : truoc.tienIch.filter((ma) => ma !== value),
     }));
   }
 
-  // --- Handler riêng cho nhóm tiện ích ---
-  function xuLyTich(e: ChangeEvent<HTMLInputElement>) {
-    const { value, checked } = e.target;
-    setTienIch((truoc) =>
-      checked ? [...truoc, value] : truoc.filter((ma) => ma !== value)
-    );
-  }
+  // ✅ Hàm gửi cụ thể cho form này
+  const gui = xuLyGui(async (gt) => {
+    // Giả lập gọi máy chủ 1.2 giây
+    await new Promise((r) => setTimeout(r, 1200));
 
-  // --- Lab 3: Đánh dấu ô đã chạm khi user rời khỏi ---
-  function xuLyRoiO(e: FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
-    const { name } = e.target;
-    setDaCham((truoc) => ({ ...truoc, [name]: true }));
-  }
+    // Chuyển giá vé về số trước khi gửi
+    const duLieuGui = { ...gt, giaVe: Number(gt.giaVe) };
+    console.log('Đã gửi:', duLieuGui);
 
-  // --- Lab 3: Chỉ trả về lỗi nếu ô đã được chạm ---
-  function loiHienThi(ten: string): string | undefined {
-    return daCham[ten] ? loi[ten] : undefined;
-  }
+    // Thông báo cho cha (nếu có)
+    onThemXong?.(gt);
 
-  // --- Lab 3: Xử lý gửi ---
-  async function xuLyGui(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault(); // ✅ Chặn tải lại trang
+    // ✅ Hiện thông báo thành công
+    setThongBao(`Đã thêm địa điểm "${gt.ten}" thành công!`);
 
-    // Đánh dấu MỌI ô đã chạm để lộ hết lỗi còn sót
-    const tatCaDaCham: Record<string, boolean> = {};
-    Object.keys(GIA_TRI_BAN_DAU).forEach((k) => {
-      tatCaDaCham[k] = true;
-    });
-    setDaCham(tatCaDaCham);
+    // ✅ Reset form
+    datLai();
 
-    // Nếu còn lỗi → dừng, không gọi API
-    if (Object.keys(kiemChung(duLieu)).length > 0) return;
-
-    try {
-      setTrangThai('dang-gui');
-      await new Promise((giai) => setTimeout(giai, 1200)); // Giả lập gọi máy chủ
-      setTrangThai('thanh-cong');
-      setDuLieu(GIA_TRI_BAN_DAU);
-      setDaCham({});
-      setTienIch([]);
-    } catch {
-      setTrangThai('that-bai');
-    }
-  }
-
-  // --- Lab 3: Nhập lại form ---
-  function xuLyNhapLai() {
-    setDuLieu(GIA_TRI_BAN_DAU);
-    setDaCham({});
-    setTienIch([]);
-    setTrangThai('cho');
-  }
+    // ✅ Tự động ẩn thông báo sau 3 giây
+    setTimeout(() => setThongBao(''), 3000);
+  });
 
   return (
-    <form className="form-dia-diem" onSubmit={xuLyGui} noValidate>
+    <form className="form-dia-diem" onSubmit={gui} noValidate>
       <h2>Thêm địa điểm tham quan</h2>
 
-      {/* ===== Ô 1: Tên địa điểm (có validation) ===== */}
+      {/* ===== Thông báo thành công ===== */}
+      {thongBao && (
+        <p className="thong-bao-thanh-cong" role="status">
+          {thongBao}
+        </p>
+      )}
+
+      {/* ===== Ô 1: Tên địa điểm ===== */}
       <div className="truong">
         <label htmlFor="ten">Tên địa điểm</label>
         <input
@@ -126,11 +106,11 @@ export default function FormThemDiaDiem() {
           onChange={xuLyThayDoi}
           onBlur={xuLyRoiO}
           placeholder="Ví dụ: Lăng Minh Mạng"
-          aria-invalid={loiHienThi('ten') ? true : undefined}
+          aria-invalid={loiCuaO('ten') ? true : undefined}
         />
-        {loiHienThi('ten') && (
+        {loiCuaO('ten') && (
           <p role="alert" className="thong-bao-loi">
-            {loiHienThi('ten')}
+            {loiCuaO('ten')}
           </p>
         )}
       </div>
@@ -148,7 +128,7 @@ export default function FormThemDiaDiem() {
         />
       </div>
 
-      {/* ===== Ô 3: Giá vé (có validation) ===== */}
+      {/* ===== Ô 3: Giá vé ===== */}
       <div className="truong">
         <label htmlFor="giaVe">Giá vé (VNĐ)</label>
         <input
@@ -160,16 +140,16 @@ export default function FormThemDiaDiem() {
           onBlur={xuLyRoiO}
           placeholder="0"
           min={0}
-          aria-invalid={loiHienThi('giaVe') ? true : undefined}
+          aria-invalid={loiCuaO('giaVe') ? true : undefined}
         />
-        {loiHienThi('giaVe') && (
+        {loiCuaO('giaVe') && (
           <p role="alert" className="thong-bao-loi">
-            {loiHienThi('giaVe')}
+            {loiCuaO('giaVe')}
           </p>
         )}
       </div>
 
-      {/* ===== Ô 4: Phường / xã (có validation) ===== */}
+      {/* ===== Ô 4: Phường / xã ===== */}
       <div className="truong">
         <label htmlFor="phuong">Phường / xã</label>
         <select
@@ -178,7 +158,7 @@ export default function FormThemDiaDiem() {
           value={duLieu.phuong}
           onChange={xuLyThayDoi}
           onBlur={xuLyRoiO}
-          aria-invalid={loiHienThi('phuong') ? true : undefined}
+          aria-invalid={loiCuaO('phuong') ? true : undefined}
         >
           <option value="">-- Chọn phường --</option>
           <option value="phu-hau">Phú Hậu</option>
@@ -186,9 +166,9 @@ export default function FormThemDiaDiem() {
           <option value="thuy-bieu">Thuỷ Biểu</option>
           <option value="vy-da">Vỹ Dạ</option>
         </select>
-        {loiHienThi('phuong') && (
+        {loiCuaO('phuong') && (
           <p role="alert" className="thong-bao-loi">
-            {loiHienThi('phuong')}
+            {loiCuaO('phuong')}
           </p>
         )}
       </div>
@@ -226,7 +206,7 @@ export default function FormThemDiaDiem() {
             <input
               type="checkbox"
               value={ti.ma}
-              checked={tienIch.includes(ti.ma)}
+              checked={duLieu.tienIch.includes(ti.ma)}
               onChange={xuLyTich}
             />
             {ti.ten}
@@ -234,7 +214,7 @@ export default function FormThemDiaDiem() {
         ))}
       </fieldset>
 
-      {/* ===== Ô 7: Hộp kiểm xác nhận (có validation) ===== */}
+      {/* ===== Ô 7: Hộp kiểm xác nhận ===== */}
       <label className="hop-kiem-xac-nhan">
         <input
           name="dongY"
@@ -242,34 +222,22 @@ export default function FormThemDiaDiem() {
           checked={duLieu.dongY}
           onChange={xuLyThayDoi}
           onBlur={xuLyRoiO}
-          aria-invalid={loiHienThi('dongY') ? true : undefined}
+          aria-invalid={loiCuaO('dongY') ? true : undefined}
         />
         Tôi xác nhận thông tin địa điểm là chính xác
       </label>
-      {loiHienThi('dongY') && (
+      {loiCuaO('dongY') && (
         <p role="alert" className="thong-bao-loi" style={{ marginBottom: 12 }}>
-          {loiHienThi('dongY')}
-        </p>
-      )}
-
-      {/* ===== Thông báo trạng thái gửi ===== */}
-      {trangThai === 'thanh-cong' && (
-        <p className="thong-bao-thanh-cong" role="status">
-          Đã thêm địa điểm thành công!
-        </p>
-      )}
-      {trangThai === 'that-bai' && (
-        <p className="thong-bao-that-bai" role="alert">
-          Có lỗi khi gửi, vui lòng thử lại.
+          {loiCuaO('dongY')}
         </p>
       )}
 
       {/* ===== Nhóm nút ===== */}
       <div className="nhom-nut">
-        <button type="submit" disabled={trangThai === 'dang-gui'}>
-          {trangThai === 'dang-gui' ? 'Đang lưu...' : 'Thêm địa điểm'}
+        <button type="submit" disabled={dangGui}>
+          {dangGui ? 'Đang lưu...' : 'Thêm địa điểm'}
         </button>
-        <button type="button" onClick={xuLyNhapLai}>
+        <button type="button" onClick={datLai}>
           Nhập lại
         </button>
       </div>

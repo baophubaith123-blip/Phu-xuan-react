@@ -148,7 +148,53 @@ p {
   border-color: #b91c1c;
 }
 
-/* --- Responsive cho mobile --- */
+/* ============================================================
+   Lab 3 Buổi 5 — Bộ lọc danh mục (Category Tabs)
+   ============================================================ */
+
+.category-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+.category-tabs button {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #4b5563;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.category-tabs button:hover {
+  background: #f0fdfa;
+  border-color: #5eead4;
+  color: #0f766e;
+}
+
+/* Tab đang chọn — nổi bật */
+.category-tabs button.is-active {
+  background: #0f766e;
+  border-color: #0f766e;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(15, 118, 110, 0.3);
+}
+
+.category-tabs button.is-active:hover {
+  background: #115e59;
+  border-color: #115e59;
+}
+
+/* ============================================================
+   Responsive cho mobile
+   ============================================================ */
 @media (max-width: 640px) {
   .app {
     padding: 1rem;
@@ -168,5 +214,15 @@ p {
     right: 8px;
     font-size: 0.75rem;
     padding: 3px 10px;
+  }
+
+  .category-tabs {
+    gap: 6px;
+    margin: 1rem 0;
+  }
+
+  .category-tabs button {
+    padding: 5px 12px;
+    font-size: 0.8rem;
   }
 }

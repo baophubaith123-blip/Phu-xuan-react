@@ -1,4 +1,4 @@
-// App.tsx — Buổi 6: Test useEffect, useRef, useMemo, useCallback
+// App.tsx — Buổi 6: Test useEffect, useRef, useMemo, useCallback, Custom Hook
 // Buổi 5–6 · INT.7.18 — Web FrontEnd nâng cao
 
 import { useState } from 'react';
@@ -6,9 +6,10 @@ import './App.css';
 import AttractionList from './components/AttractionList';
 import CategoryTabs from './components/CategoryTabs';
 import LuotXemDaiNoi from './features/landmarks/LuotXemDaiNoi';
-import DanhSachDiaDanh from './features/landmarks/DanhSachDiaDanh';   // ← Thêm
+import DanhSachDiaDanh from './features/landmarks/DanhSachDiaDanh';
 import TrangMonAn from './features/food/TrangMonAn';
 import TimMonAn from './features/food/TimMonAn';
+import TimMonAnDebounce from './features/food/TimMonAnDebounce';   // ← Thêm
 import { attractions } from './data/attractions';
 
 function App() {
@@ -85,7 +86,7 @@ function App() {
         <TimMonAn />
       </div>
 
-      {/* === Lab 4 Buổi 6: useMemo + useCallback + React.memo === */}
+      {/* === Lab 4 Buổi 6 === */}
       <div style={{
         padding: '1rem',
         marginBottom: '1.5rem',
@@ -97,6 +98,20 @@ function App() {
           🧪 Test Lab 4 Buổi 6: useMemo + useCallback + React.memo
         </h2>
         <DanhSachDiaDanh />
+      </div>
+
+      {/* === Lab 5 Buổi 6: Custom Hook useDebounce === */}
+      <div style={{
+        padding: '1rem',
+        marginBottom: '1.5rem',
+        background: '#dcfce7',
+        border: '1px solid #86efac',
+        borderRadius: '8px'
+      }}>
+        <h2 style={{ fontSize: '1rem', marginBottom: '0.75rem' }}>
+          🧪 Test Lab 5 Buổi 6: Custom Hook useDebounce
+        </h2>
+        <TimMonAnDebounce />
       </div>
 
       <CategoryTabs

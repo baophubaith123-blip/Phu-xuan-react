@@ -524,6 +524,97 @@ p {
 }
 
 /* ============================================================
+   Lab 5 Buổi 6 — Custom Hook useDebounce (TimMonAnDebounce)
+   ============================================================ */
+
+.tim-mon-an-debounce {
+  padding: 1rem;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.tim-mon-an-debounce__input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 2px solid #86efac;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+  margin-bottom: 0.75rem;
+}
+
+.tim-mon-an-debounce__input:focus {
+  border-color: #16a34a;
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.15);
+}
+
+.tim-mon-an-debounce__input::placeholder {
+  color: #9ca3af;
+}
+
+.tim-mon-an-debounce__hint {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-bottom: 0.5rem;
+}
+
+.tim-mon-an-debounce__hint code {
+  background: #f3f4f6;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #16a34a;
+  font-size: 0.85rem;
+  font-family: 'Courier New', monospace;
+}
+
+.tim-mon-an-debounce__result {
+  font-size: 0.9rem;
+  color: #4b5563;
+  margin-bottom: 0.75rem;
+  padding: 8px 12px;
+  background: #f0fdf4;
+  border-radius: 6px;
+}
+
+.tim-mon-an-debounce__result strong {
+  color: #16a34a;
+}
+
+.tim-mon-an-debounce__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tim-mon-an-debounce__list li {
+  padding: 10px 14px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #111827;
+}
+
+.tim-mon-an-debounce__mo-ta {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.tim-mon-an-debounce__empty {
+  text-align: center;
+  color: #9ca3af;
+  font-style: italic;
+  background: #fef3c7 !important;
+  border-color: #fbbf24 !important;
+}
+
+/* ============================================================
    Responsive cho mobile
    ============================================================ */
 @media (max-width: 640px) {
@@ -588,5 +679,15 @@ p {
 
   .the-dia-danh h4 {
     font-size: 0.9rem;
+  }
+
+  .tim-mon-an-debounce__input {
+    font-size: 0.95rem;
+    padding: 8px 12px;
+  }
+
+  .tim-mon-an-debounce__list li {
+    padding: 8px 12px;
+    font-size: 0.85rem;
   }
 }

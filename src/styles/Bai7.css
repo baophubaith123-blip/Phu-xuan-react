@@ -320,7 +320,6 @@ button:disabled {
   color: #9ca3af;
 }
 
-/* --- Khung gợi ý từ khoá --- */
 .goi-y {
   position: absolute;
   top: 100%;
@@ -350,7 +349,6 @@ button:disabled {
   border-color: var(--teal);
 }
 
-/* --- Danh sách món ăn --- */
 .ds-mon {
   list-style: none;
   padding: 0;
@@ -379,4 +377,125 @@ button:disabled {
   color: var(--teal);
   font-weight: 600;
   font-size: 0.85rem;
+}
+
+/* ============================================================
+   Lab 5 — Sắp xếp món Huế yêu thích bằng kéo thả
+   ============================================================ */
+
+.goi-y-thao-tac {
+  font-size: 0.85rem;
+  color: #5a6475;
+  font-style: italic;
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  background: #f0f9f9;
+  border-left: 3px solid var(--teal);
+  border-radius: 4px;
+}
+
+.goi-y-thao-tac kbd {
+  display: inline-block;
+  padding: 1px 6px;
+  background: #fff;
+  border: 1px solid var(--vien);
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  color: var(--navy);
+  font-weight: 600;
+}
+
+.ds-mon-yeu-thich {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: vi-tri;
+}
+
+.ds-mon-yeu-thich li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  margin: 6px 0;
+  background: #fff;
+  cursor: grab;
+  border: 1px solid var(--vien);
+  border-radius: 8px;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.ds-mon-yeu-thich li::before {
+  counter-increment: vi-tri;
+  content: counter(vi-tri) '.';
+  font-weight: 700;
+  color: var(--teal);
+  margin-right: 8px;
+  min-width: 20px;
+}
+
+.ds-mon-yeu-thich li > span {
+  flex: 1;
+  font-weight: 500;
+  color: #1f2937;
+}
+
+/* Dòng đang được kéo — mờ đi */
+.ds-mon-yeu-thich li.dang-keo {
+  opacity: 0.4;
+  cursor: grabbing;
+}
+
+/* Vị trí sắp thả — viền vàng phía trên */
+.ds-mon-yeu-thich li.vi-tri-tha {
+  border-top: 3px solid var(--amber);
+  background: #fbf4e4;
+}
+
+.ds-mon-yeu-thich li:hover {
+  background: #f9fafb;
+  border-color: var(--teal);
+}
+
+/* Khi dòng được focus bằng Tab */
+.ds-mon-yeu-thich li:focus {
+  outline: 3px solid var(--teal);
+  outline-offset: 2px;
+  background: #f0f9f9;
+}
+
+.ds-mon-yeu-thich li button {
+  margin: 0;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  background: #fff5f5;
+  border: 1px solid #f9a8a8;
+  color: #be123c;
+}
+
+.ds-mon-yeu-thich li button:hover {
+  background: #be123c;
+  border-color: #be123c;
+  color: #fff;
+}
+
+/* Vùng thông báo cho trình đọc màn hình */
+.thong-bao {
+  min-height: 1.4em;
+  color: var(--teal);
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-top: 12px;
+  padding: 8px 12px;
+  background: #f0f9f9;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+.thong-bao:empty {
+  background: transparent;
+  padding: 0;
+  min-height: 0;
 }

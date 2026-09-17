@@ -1,4 +1,4 @@
-// Bai7Page.tsx — Trang chính của Bài 7
+// Bai7Page.tsx — Trang chính của Bài 7 (hoàn chỉnh sau Lab 5)
 // Buổi 7 · INT.7.18 — Web FrontEnd nâng cao
 
 import '../styles/Bai7.css';
@@ -7,6 +7,7 @@ import DanhSachDiaDanh from '../components/Bai7/DanhSachDiaDanh';
 import KhamPhaDiaDanh from '../components/Bai7/KhamPhaDiaDanh';
 import LuotThichMonAn from '../components/Bai7/LuotThichMonAn';
 import TimMonAnHue from '../components/Bai7/TimMonAnHue';
+import MonAnYeuThich from '../components/Bai7/MonAnYeuThich';
 
 export default function Bai7Page() {
   return (
@@ -18,6 +19,7 @@ export default function Bai7Page() {
       <KhamPhaDiaDanh />
       <LuotThichMonAn />
       <TimMonAnHue />
+      <MonAnYeuThich />
     </main>
   );
 }

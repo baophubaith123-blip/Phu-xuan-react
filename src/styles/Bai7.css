@@ -112,7 +112,6 @@ button:disabled {
    Lab 2 — Lịch trình chọn nhiều địa danh
    ============================================================ */
 
-/* --- Thanh lọc theo loại --- */
 .thanh-loc {
   display: flex;
   flex-wrap: wrap;
@@ -133,14 +132,12 @@ button:disabled {
   color: #fff;
 }
 
-/* --- Thanh công cụ (Chọn tất cả / Bỏ chọn) --- */
 .thanh-cong-cu {
   display: flex;
   gap: 6px;
   margin-bottom: 12px;
 }
 
-/* --- Danh sách thẻ địa danh --- */
 .ds-dia-danh {
   list-style: none;
   padding: 0;
@@ -163,7 +160,6 @@ button:disabled {
   background: #f6f8fa;
 }
 
-/* Thẻ đang được chọn — nền xanh nhạt, viền teal */
 .the-dia-danh.dang-chon label {
   background: #e8f4f3;
   border-color: var(--teal);
@@ -188,7 +184,6 @@ button:disabled {
   font-style: italic;
 }
 
-/* --- Dòng lộ trình --- */
 .lich-trinh {
   font-weight: 600;
   color: var(--navy);
@@ -205,14 +200,12 @@ button:disabled {
    Lab 3 — Thẻ địa danh có nút lồng nhau
    ============================================================ */
 
-/* --- Lưới thẻ --- */
 .luoi-the {
   display: grid;
   gap: 12px;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
 }
 
-/* --- Thẻ mở rộng --- */
 .the-mo-rong {
   border: 1px solid var(--vien);
   border-radius: 10px;
@@ -226,7 +219,6 @@ button:disabled {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-/* Thẻ đang mở — viền vàng, nền vàng nhạt */
 .the-mo-rong.dang-mo {
   border-color: var(--amber);
   background: #fbf4e4;
@@ -252,7 +244,6 @@ button:disabled {
   line-height: 1.5;
 }
 
-/* --- Nhóm nút hành động trong thẻ --- */
 .the-mo-rong .hanh-dong {
   display: flex;
   gap: 6px;
@@ -266,7 +257,6 @@ button:disabled {
   margin: 0;
 }
 
-/* --- Dòng thống kê tương tác --- */
 .thong-ke {
   color: #5a6475;
   font-size: 0.9rem;
@@ -296,5 +286,97 @@ button:disabled {
 }
 
 .luot-thich button {
+  font-size: 0.85rem;
+}
+
+/* ============================================================
+   Lab 4 — Tìm món ăn Huế bằng bàn phím
+   ============================================================ */
+
+.form-tim {
+  position: relative;
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.form-tim input {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--vien);
+  font-family: inherit;
+  font-size: 0.9rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  outline: none;
+}
+
+.form-tim input:focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(15, 110, 106, 0.15);
+}
+
+.form-tim input::placeholder {
+  color: #9ca3af;
+}
+
+/* --- Khung gợi ý từ khoá --- */
+.goi-y {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding: 4px;
+  background: #fff;
+  border: 1px solid var(--vien);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  z-index: 10;
+  display: flex;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.goi-y button {
+  margin: 0;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  background: #f3f4f6;
+  border: 1px solid transparent;
+}
+
+.goi-y button:hover {
+  background: var(--teal);
+  color: #fff;
+  border-color: var(--teal);
+}
+
+/* --- Danh sách món ăn --- */
+.ds-mon {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+}
+
+.ds-mon li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  margin: 6px 0;
+  background: #f9fafb;
+  border: 1px solid var(--vien);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  transition: background 0.15s ease;
+}
+
+.ds-mon li:hover {
+  background: #f0f9f9;
+  border-color: var(--teal);
+}
+
+.ds-mon li small {
+  color: var(--teal);
+  font-weight: 600;
   font-size: 0.85rem;
 }

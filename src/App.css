@@ -434,6 +434,96 @@ p {
 }
 
 /* ============================================================
+   Lab 4 Buổi 6 — Danh sách địa danh (useMemo + useCallback)
+   ============================================================ */
+
+.danh-sach-dia-danh {
+  padding: 1rem;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.danh-sach-dia-danh__input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 2px solid #93c5fd;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+  margin-bottom: 0.75rem;
+}
+
+.danh-sach-dia-danh__input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.danh-sach-dia-danh__input::placeholder {
+  color: #9ca3af;
+}
+
+.danh-sach-dia-danh__info {
+  font-size: 0.85rem;
+  color: #4b5563;
+  margin-bottom: 0.75rem;
+}
+
+.danh-sach-dia-danh__list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.the-dia-danh {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  transition: background 0.15s ease;
+}
+
+.the-dia-danh:hover {
+  background: #f3f4f6;
+}
+
+.the-dia-danh h4 {
+  font-size: 0.95rem;
+  margin: 0 0 2px;
+  color: #111827;
+}
+
+.the-dia-danh__khu-vuc {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.the-dia-danh__btn {
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid #93c5fd;
+  background: #ffffff;
+  color: #2563eb;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.the-dia-danh__btn:hover {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+/* ============================================================
    Responsive cho mobile
    ============================================================ */
 @media (max-width: 640px) {
@@ -485,5 +575,18 @@ p {
   .tim-mon-an__input {
     font-size: 0.95rem;
     padding: 8px 12px;
+  }
+
+  .danh-sach-dia-danh__input {
+    font-size: 0.95rem;
+    padding: 8px 12px;
+  }
+
+  .the-dia-danh {
+    padding: 8px 12px;
+  }
+
+  .the-dia-danh h4 {
+    font-size: 0.9rem;
   }
 }

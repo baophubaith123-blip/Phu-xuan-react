@@ -6,8 +6,9 @@ import './App.css';
 import AttractionList from './components/AttractionList';
 import CategoryTabs from './components/CategoryTabs';
 import LuotXemDaiNoi from './features/landmarks/LuotXemDaiNoi';
+import DanhSachDiaDanh from './features/landmarks/DanhSachDiaDanh';   // ← Thêm
 import TrangMonAn from './features/food/TrangMonAn';
-import TimMonAn from './features/food/TimMonAn';   // ← Thêm dòng này
+import TimMonAn from './features/food/TimMonAn';
 import { attractions } from './data/attractions';
 
 function App() {
@@ -28,7 +29,7 @@ function App() {
     <div className="app">
       <h1>Khám phá Huế</h1>
 
-      {/* === Lab 1 Buổi 6: Đồng hồ đếm lượt xem === */}
+      {/* === Lab 1 Buổi 6 === */}
       <div style={{
         padding: '1rem',
         marginBottom: '1.5rem',
@@ -56,7 +57,7 @@ function App() {
         {hienThi && <LuotXemDaiNoi />}
       </div>
 
-      {/* === Lab 2 Buổi 6: Xem chi tiết món ăn === */}
+      {/* === Lab 2 Buổi 6 === */}
       <div style={{
         padding: '1rem',
         marginBottom: '1.5rem',
@@ -70,7 +71,7 @@ function App() {
         <TrangMonAn />
       </div>
 
-      {/* === Lab 3 Buổi 6: useRef — Ô tìm kiếm tự động focus === */}
+      {/* === Lab 3 Buổi 6 === */}
       <div style={{
         padding: '1rem',
         marginBottom: '1.5rem',
@@ -82,6 +83,20 @@ function App() {
           🧪 Test Lab 3 Buổi 6: useRef (focus & đếm render)
         </h2>
         <TimMonAn />
+      </div>
+
+      {/* === Lab 4 Buổi 6: useMemo + useCallback + React.memo === */}
+      <div style={{
+        padding: '1rem',
+        marginBottom: '1.5rem',
+        background: '#dbeafe',
+        border: '1px solid #93c5fd',
+        borderRadius: '8px'
+      }}>
+        <h2 style={{ fontSize: '1rem', marginBottom: '0.75rem' }}>
+          🧪 Test Lab 4 Buổi 6: useMemo + useCallback + React.memo
+        </h2>
+        <DanhSachDiaDanh />
       </div>
 
       <CategoryTabs

@@ -8,7 +8,7 @@
    ============================================================ */
 
 .trang-Bai8 {
-  max-width: 880px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 24px;
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
@@ -30,7 +30,7 @@
   margin: 20px 0;
   background: #ffffff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-  border-left: 4px solid #0f6e6a;   /* Viền trái xanh teal — phân biệt form */
+  border-left: 4px solid #0f6e6a;
 }
 
 .form-dia-diem h2 {
@@ -276,7 +276,7 @@
   margin: 20px 0;
   background: #ffffff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-  border-left: 4px solid #b8860b;   /* Viền trái vàng — phân biệt với form địa điểm */
+  border-left: 4px solid #b8860b;
 }
 
 .form-gop-y h2 {
@@ -286,11 +286,6 @@
   font-size: 1.15rem;
 }
 
-/* ✅ Form góp ý cũng dùng chung class .truong — nên chỉ cần định nghĩa thêm
-   các rule đặc thù (nếu có). Hiện tại không cần gì thêm vì .truong,
-   .thong-bao-loi, .nhom-nut đều đã được định nghĩa chung ở trên. */
-
-/* --- Tinh chỉnh riêng cho form góp ý (nếu muốn) --- */
 .form-gop-y .truong input:focus,
 .form-gop-y .truong textarea:focus {
   border-color: #b8860b;
@@ -305,4 +300,80 @@
 .form-gop-y .nhom-nut button[type='submit']:hover:not(:disabled) {
   background: #966d09;
   border-color: #966d09;
+}
+
+/* ============================================================
+   Lab 5 Buổi 8 — Bố cục 2 cột & Khung xem trước
+   ============================================================ */
+
+.trang-them-dia-diem {
+  margin: 20px 0;
+}
+
+/* --- Bố cục 2 cột: form bên trái, xem trước bên phải --- */
+.bo-cuc-hai-cot {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .bo-cuc-hai-cot {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Form không cần margin lớn vì đã nằm trong grid */
+.bo-cuc-hai-cot > .form-dia-diem {
+  margin: 0;
+}
+
+/* --- Khung xem trước (sticky — dính khi cuộn) --- */
+.the-xem-truoc {
+  position: sticky;
+  top: 20px;
+  border: 1px solid #c9d3de;
+  border-radius: 12px;
+  padding: 16px 18px;
+  background: linear-gradient(135deg, #fef9e7 0%, #fdf4d8 100%);
+  border-left: 4px solid #b8860b;
+  box-shadow: 0 2px 8px rgba(184, 134, 11, 0.08);
+}
+
+.the-xem-truoc__tieu-de {
+  color: #1b2a4a;
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed #c9d3de;
+  min-height: 1.5em;
+}
+
+.the-xem-truoc__mo-ta {
+  color: #4b5563;
+  font-size: 0.9rem;
+  font-style: italic;
+  margin: 8px 0 12px;
+  min-height: 2.5em;
+}
+
+.the-xem-truoc p {
+  font-size: 0.85rem;
+  margin: 6px 0;
+  color: #4b5563;
+}
+
+.the-xem-truoc p strong {
+  color: #1b2a4a;
+}
+
+.the-xem-truoc__xac-nhan {
+  margin-top: 12px !important;
+  padding: 6px 10px;
+  background: #f0fdf4;
+  border-radius: 6px;
+  color: #15803d !important;
+  font-weight: 600;
+  font-size: 0.85rem !important;
 }

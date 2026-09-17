@@ -1,23 +1,9 @@
-// FormThemDiaDiem.tsx — Form thêm địa điểm (dùng hook useForm)
-// Buổi 8 · Lab 4: Rút gọn logic vào Custom Hook + thông báo thành công
+// FormThemDiaDiem.tsx — Form thêm địa điểm (NHẬN PROPS từ cha)
+// Buổi 8 · Lab 5: Không tự gọi hook — cha giữ state
 // INT.7.18 — Web FrontEnd nâng cao
 
-import { useState } from 'react';
-import type { ChangeEvent } from 'react';
-import { useForm } from '../../hooks/useForm';
-import { kiemChung } from './kiemChung';
+import type { ChangeEvent, FocusEvent, FormEvent } from 'react';
 import type { DuLieuForm } from './types';
-
-// ✅ Hằng số giá trị ban đầu — khai báo NGOÀI component
-const GIA_TRI_BAN_DAU: DuLieuForm = {
-  ten: '',
-  moTa: '',
-  giaVe: '',
-  phuong: '',
-  loaiHinh: 'di-tich',
-  dongY: false,
-  tienIch: [],
-};
 
 interface TienIch {
   ma: string;
@@ -31,27 +17,37 @@ const DS_TIEN_ICH: TienIch[] = [
   { ma: 'khu-ve-sinh', ten: 'Khu vệ sinh công cộng' },
 ];
 
+// ✅ Props — nhận TOÀN BỘ từ hook của cha + callback onThemXong
 interface FormThemDiaDiemProps {
+  duLieu: DuLieuForm;
+  setDuLieu: (updater: (truoc: DuLieuForm) => DuLieuForm) => void;
+  dangGui: boolean;
+  xuLyThayDoi: (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => void;
+  xuLyRoiO: (
+    e: FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => void;
+  loiCuaO: (ten: string) => string | undefined;
+  xuLyGui: (
+    guiDuLieu: (duLieu: DuLieuForm) => Promise<void>
+  ) => (e: FormEvent<HTMLFormElement>) => Promise<void>;
+  datLai: () => void;
   onThemXong?: (duLieu: DuLieuForm) => void;
 }
 
-export default function FormThemDiaDiem({ onThemXong }: FormThemDiaDiemProps) {
-  // ✅ Hook quản lý state/handler/validation
-  const {
-    duLieu,
-    setDuLieu,
-    dangGui,
-    xuLyThayDoi,
-    xuLyRoiO,
-    loiCuaO,
-    xuLyGui,
-    datLai,
-  } = useForm(GIA_TRI_BAN_DAU, kiemChung);
-
-  // ✅ State riêng của form này — thông báo thành công
-  const [thongBao, setThongBao] = useState<string>('');
-
-  // ✅ Handler riêng cho nhóm tiện ích (vì lưu vào mảng)
+export default function FormThemDiaDiem({
+  duLieu,
+  setDuLieu,
+  dangGui,
+  xuLyThayDoi,
+  xuLyRoiO,
+  loiCuaO,
+  xuLyGui,
+  datLai,
+  onThemXong,
+}: FormThemDiaDiemProps) {
+  // ✅ Handler riêng cho nhóm tiện ích
   function xuLyTich(e: ChangeEvent<HTMLInputElement>) {
     const { value, checked } = e.target;
     setDuLieu((truoc) => ({
@@ -62,40 +58,22 @@ export default function FormThemDiaDiem({ onThemXong }: FormThemDiaDiemProps) {
     }));
   }
 
-  // ✅ Hàm gửi cụ thể cho form này
+  // ✅ Hàm gửi — gọi hook của cha
   const gui = xuLyGui(async (gt) => {
-    // Giả lập gọi máy chủ 1.2 giây
     await new Promise((r) => setTimeout(r, 1200));
 
-    // Chuyển giá vé về số trước khi gửi
     const duLieuGui = { ...gt, giaVe: Number(gt.giaVe) };
     console.log('Đã gửi:', duLieuGui);
 
-    // Thông báo cho cha (nếu có)
     onThemXong?.(gt);
-
-    // ✅ Hiện thông báo thành công
-    setThongBao(`Đã thêm địa điểm "${gt.ten}" thành công!`);
-
-    // ✅ Reset form
     datLai();
-
-    // ✅ Tự động ẩn thông báo sau 3 giây
-    setTimeout(() => setThongBao(''), 3000);
   });
 
   return (
     <form className="form-dia-diem" onSubmit={gui} noValidate>
       <h2>Thêm địa điểm tham quan</h2>
 
-      {/* ===== Thông báo thành công ===== */}
-      {thongBao && (
-        <p className="thong-bao-thanh-cong" role="status">
-          {thongBao}
-        </p>
-      )}
-
-      {/* ===== Ô 1: Tên địa điểm ===== */}
+      {/* ===== Ô 1: Tên ===== */}
       <div className="truong">
         <label htmlFor="ten">Tên địa điểm</label>
         <input
@@ -115,7 +93,7 @@ export default function FormThemDiaDiem({ onThemXong }: FormThemDiaDiemProps) {
         )}
       </div>
 
-      {/* ===== Ô 2: Mô tả ngắn ===== */}
+      {/* ===== Ô 2: Mô tả ===== */}
       <div className="truong">
         <label htmlFor="moTa">Mô tả ngắn</label>
         <textarea
@@ -124,7 +102,7 @@ export default function FormThemDiaDiem({ onThemXong }: FormThemDiaDiemProps) {
           rows={4}
           value={duLieu.moTa}
           onChange={xuLyThayDoi}
-          placeholder="Vài dòng giới thiệu về địa điểm…"
+          placeholder="Vài dòng giới thiệu…"
         />
       </div>
 
@@ -149,7 +127,7 @@ export default function FormThemDiaDiem({ onThemXong }: FormThemDiaDiemProps) {
         )}
       </div>
 
-      {/* ===== Ô 4: Phường / xã ===== */}
+      {/* ===== Ô 4: Phường ===== */}
       <div className="truong">
         <label htmlFor="phuong">Phường / xã</label>
         <select
@@ -173,7 +151,7 @@ export default function FormThemDiaDiem({ onThemXong }: FormThemDiaDiemProps) {
         )}
       </div>
 
-      {/* ===== Ô 5: Nhóm nút chọn "Loại hình" ===== */}
+      {/* ===== Ô 5: Loại hình ===== */}
       <fieldset>
         <legend>Loại hình</legend>
         <label>
@@ -198,7 +176,7 @@ export default function FormThemDiaDiem({ onThemXong }: FormThemDiaDiemProps) {
         </label>
       </fieldset>
 
-      {/* ===== Ô 6: Nhóm tiện ích ===== */}
+      {/* ===== Ô 6: Tiện ích ===== */}
       <fieldset>
         <legend>Tiện ích tại điểm đến</legend>
         {DS_TIEN_ICH.map((ti) => (
@@ -214,7 +192,7 @@ export default function FormThemDiaDiem({ onThemXong }: FormThemDiaDiemProps) {
         ))}
       </fieldset>
 
-      {/* ===== Ô 7: Hộp kiểm xác nhận ===== */}
+      {/* ===== Ô 7: Xác nhận ===== */}
       <label className="hop-kiem-xac-nhan">
         <input
           name="dongY"

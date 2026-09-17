@@ -233,6 +233,83 @@ p {
 }
 
 /* ============================================================
+   Lab 5 Buổi 5 — Bộ đếm vé tham quan (TicketCounter)
+   ============================================================ */
+
+.ticket-counter {
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  background: #f0fdfa;
+  border: 1px solid #5eead4;
+  border-radius: 8px;
+}
+
+.ticket-counter__label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #0f766e;
+  margin: 0 0 0.5rem;
+}
+
+.ticket-counter__controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.ticket-counter__controls button {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: 1px solid #0f766e;
+  background: #ffffff;
+  color: #0f766e;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+}
+
+.ticket-counter__controls button:hover:not(:disabled) {
+  background: #0f766e;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+/* Nút bị vô hiệu hóa — giới hạn đã chạm */
+.ticket-counter__controls button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  background: #e5e7eb;
+  border-color: #d1d5db;
+  color: #9ca3af;
+}
+
+.ticket-counter__quantity {
+  min-width: 32px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0f766e;
+}
+
+.ticket-counter__total {
+  font-size: 0.9rem;
+  color: #4b5563;
+  margin: 0;
+}
+
+.ticket-counter__total strong {
+  color: #dc2626;
+  font-size: 1rem;
+}
+
+/* ============================================================
    Responsive cho mobile
    ============================================================ */
 @media (max-width: 640px) {
@@ -268,5 +345,11 @@ p {
 
   .star-rating .star {
     font-size: 1.25rem;
+  }
+
+  .ticket-counter__controls button {
+    width: 28px;
+    height: 28px;
+    font-size: 1rem;
   }
 }

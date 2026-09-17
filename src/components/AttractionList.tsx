@@ -10,7 +10,7 @@ interface AttractionListProps {
 function AttractionList({ attractions }: AttractionListProps) {
   return (
     <div className="attraction-list">
-     {attractions.map((item) => (
+    {attractions.map((item) => (
   <AttractionCard
     key={item.id}
     id={item.id}
@@ -18,6 +18,8 @@ function AttractionList({ attractions }: AttractionListProps) {
     category={item.category}
     description={item.description}
     rating={item.rating}
+    showTicket={item.id === 1}
+    ticketPrice={150000}
   />
 ))}
     </div>

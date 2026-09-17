@@ -1,8 +1,9 @@
 // AttractionCard.tsx — Thẻ hiển thị một địa điểm tham quan
-// Buổi 5 · Lab 4: Tích hợp StarRating
+// Buổi 5 · Lab 5: Tích hợp TicketCounter
 
 import { useState, useEffect } from 'react';
 import StarRating from './StarRating';
+import TicketCounter from './TicketCounter';
 
 interface AttractionCardProps {
   id: number;
@@ -10,10 +11,19 @@ interface AttractionCardProps {
   category: string;
   description: string;
   rating: number;
+  showTicket?: boolean;      // ← Có hiện TicketCounter không
+  ticketPrice?: number;      // ← Đơn giá vé (nếu có)
 }
 
-function AttractionCard({ id, name, category, description, rating }: AttractionCardProps) {
-  // Lab 2: State yêu thích (lưu vào localStorage)
+function AttractionCard({
+  id,
+  name,
+  category,
+  description,
+  rating,
+  showTicket = false,
+  ticketPrice = 0,
+}: AttractionCardProps) {
   const [isFavorite, setIsFavorite] = useState<boolean>(() => {
     const saved = localStorage.getItem(`favorite-${id}`);
     return saved === 'true';
@@ -29,7 +39,6 @@ function AttractionCard({ id, name, category, description, rating }: AttractionC
 
   return (
     <div className="attraction-card">
-      {/* Lab 2: Nút yêu thích */}
       <button
         className={`attraction-card__favorite ${isFavorite ? 'is-active' : ''}`}
         onClick={handleToggleFavorite}
@@ -41,8 +50,10 @@ function AttractionCard({ id, name, category, description, rating }: AttractionC
       <h3>{name}</h3>
       <p>{description}</p>
 
-      {/* Lab 4: Đánh giá sao */}
       <StarRating />
+
+      {/* ✅ Lab 5: Chỉ hiện TicketCounter nếu showTicket = true */}
+      {showTicket && <TicketCounter price={ticketPrice} />}
 
       <span className="attraction-card__rating">⭐ {rating}</span>
     </div>

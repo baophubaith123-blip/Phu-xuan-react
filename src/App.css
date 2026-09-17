@@ -109,6 +109,45 @@ p {
   align-self: flex-start;
 }
 
+/* ============================================================
+   Lab 2 Buổi 5 — Nút yêu thích (Favorite Button)
+   ============================================================ */
+
+.attraction-card__favorite {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.attraction-card__favorite:hover {
+  background: #fef2f2;
+  border-color: #fca5a5;
+  color: #dc2626;
+  transform: scale(1.05);
+}
+
+/* Trạng thái "đã lưu" — trái tim đỏ */
+.attraction-card__favorite.is-active {
+  background: #dc2626;
+  border-color: #dc2626;
+  color: #ffffff;
+}
+
+.attraction-card__favorite.is-active:hover {
+  background: #b91c1c;
+  border-color: #b91c1c;
+}
+
 /* --- Responsive cho mobile --- */
 @media (max-width: 640px) {
   .app {
@@ -122,5 +161,12 @@ p {
   .attraction-list {
     grid-template-columns: 1fr;
     gap: 1rem;
+  }
+
+  .attraction-card__favorite {
+    top: 8px;
+    right: 8px;
+    font-size: 0.75rem;
+    padding: 3px 10px;
   }
 }

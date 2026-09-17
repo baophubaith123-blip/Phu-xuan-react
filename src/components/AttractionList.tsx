@@ -10,15 +10,16 @@ interface AttractionListProps {
 function AttractionList({ attractions }: AttractionListProps) {
   return (
     <div className="attraction-list">
-      {attractions.map((item) => (
-        <AttractionCard
-          key={item.id}
-          name={item.name}
-          category={item.category}
-          description={item.description}
-          rating={item.rating}
-        />
-      ))}
+     {attractions.map((item) => (
+  <AttractionCard
+    key={item.id}
+    id={item.id}
+    name={item.name}
+    category={item.category}
+    description={item.description}
+    rating={item.rating}
+  />
+))}
     </div>
   );
 }

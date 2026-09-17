@@ -1,7 +1,8 @@
 // AttractionCard.tsx — Thẻ hiển thị một địa điểm tham quan
-// Buổi 5 · Lab 2 (Bonus): Lưu trạng thái yêu thích vào localStorage
+// Buổi 5 · Lab 4: Tích hợp StarRating
 
 import { useState, useEffect } from 'react';
+import StarRating from './StarRating';
 
 interface AttractionCardProps {
   id: number;
@@ -12,13 +13,12 @@ interface AttractionCardProps {
 }
 
 function AttractionCard({ id, name, category, description, rating }: AttractionCardProps) {
-  // Khởi tạo state từ localStorage nếu có (lazy initializer)
+  // Lab 2: State yêu thích (lưu vào localStorage)
   const [isFavorite, setIsFavorite] = useState<boolean>(() => {
     const saved = localStorage.getItem(`favorite-${id}`);
     return saved === 'true';
   });
 
-  // Mỗi khi isFavorite thay đổi → lưu vào localStorage
   useEffect(() => {
     localStorage.setItem(`favorite-${id}`, String(isFavorite));
   }, [isFavorite, id]);
@@ -29,6 +29,7 @@ function AttractionCard({ id, name, category, description, rating }: AttractionC
 
   return (
     <div className="attraction-card">
+      {/* Lab 2: Nút yêu thích */}
       <button
         className={`attraction-card__favorite ${isFavorite ? 'is-active' : ''}`}
         onClick={handleToggleFavorite}
@@ -39,6 +40,10 @@ function AttractionCard({ id, name, category, description, rating }: AttractionC
       <div className="attraction-card__badge">{category}</div>
       <h3>{name}</h3>
       <p>{description}</p>
+
+      {/* Lab 4: Đánh giá sao */}
+      <StarRating />
+
       <span className="attraction-card__rating">⭐ {rating}</span>
     </div>
   );

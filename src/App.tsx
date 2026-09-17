@@ -1,23 +1,22 @@
-// App.tsx — Lab 3 Buổi 5: Bộ lọc theo danh mục
+// App.tsx — Buổi 6 · Lab 1: Test useEffect & Cleanup
 // Buổi 5 · INT.7.18 — Web FrontEnd nâng cao
 
 import { useState } from 'react';
 import './App.css';
 import AttractionList from './components/AttractionList';
 import CategoryTabs from './components/CategoryTabs';
+import LuotXemDaiNoi from './features/landmarks/LuotXemDaiNoi';
 import { attractions } from './data/attractions';
 
 function App() {
-  // ✅ State lọc — đặt ở cha để cả CategoryTabs và AttractionList đều dùng
   const [selectedCategory, setSelectedCategory] = useState('Tất cả');
+  const [hienThi, setHienThi] = useState(true);  // ← State cho nút test
 
-  // Lấy danh sách danh mục duy nhất (không trùng lặp) từ dữ liệu
   const categories = [
     'Tất cả',
     ...new Set(attractions.map((item) => item.category)),
   ];
 
-  // Lọc danh sách theo danh mục đang chọn
   const filteredAttractions =
     selectedCategory === 'Tất cả'
       ? attractions
@@ -27,14 +26,43 @@ function App() {
     <div className="app">
       <h1>Khám phá Huế</h1>
 
-      {/* Thanh tab lọc — nhận state và callback từ cha */}
+      {/* === TEST LAB 1 BUỔI 6: Đồng hồ đếm lượt xem === */}
+      <div style={{
+        padding: '1rem',
+        marginBottom: '1.5rem',
+        background: '#fef3c7',
+        border: '1px solid #fbbf24',
+        borderRadius: '8px'
+      }}>
+        <h2 style={{ fontSize: '1rem', marginBottom: '0.75rem' }}>
+          🧪 Test Lab 1 Buổi 6: useEffect Cleanup
+        </h2>
+
+        <button
+          onClick={() => setHienThi(!hienThi)}
+          style={{
+            padding: '6px 14px',
+            marginBottom: '0.75rem',
+            borderRadius: '6px',
+            border: '1px solid #f59e0b',
+            background: '#ffffff',
+            cursor: 'pointer',
+            fontWeight: 600,
+          }}
+        >
+          {hienThi ? '👁 Ẩn thẻ Đại Nội' : '👁 Hiện thẻ Đại Nội'}
+        </button>
+
+        {hienThi && <LuotXemDaiNoi />}
+      </div>
+      {/* === HẾT PHẦN TEST === */}
+
       <CategoryTabs
         categories={categories}
         selectedCategory={selectedCategory}
         onSelectCategory={setSelectedCategory}
       />
 
-      {/* Danh sách đã lọc */}
       <AttractionList attractions={filteredAttractions} />
     </div>
   );

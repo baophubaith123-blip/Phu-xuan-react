@@ -1,11 +1,13 @@
-// App.tsx — Buổi 6 · Lab 2: Test useEffect với dependency
+// App.tsx — Buổi 6: Test useEffect, useRef, useMemo, useCallback
+// Buổi 5–6 · INT.7.18 — Web FrontEnd nâng cao
 
 import { useState } from 'react';
 import './App.css';
 import AttractionList from './components/AttractionList';
 import CategoryTabs from './components/CategoryTabs';
 import LuotXemDaiNoi from './features/landmarks/LuotXemDaiNoi';
-import TrangMonAn from './features/food/TrangMonAn';   // ← Thêm dòng này
+import TrangMonAn from './features/food/TrangMonAn';
+import TimMonAn from './features/food/TimMonAn';   // ← Thêm dòng này
 import { attractions } from './data/attractions';
 
 function App() {
@@ -66,6 +68,20 @@ function App() {
           🧪 Test Lab 2 Buổi 6: useEffect với dependency
         </h2>
         <TrangMonAn />
+      </div>
+
+      {/* === Lab 3 Buổi 6: useRef — Ô tìm kiếm tự động focus === */}
+      <div style={{
+        padding: '1rem',
+        marginBottom: '1.5rem',
+        background: '#ede9fe',
+        border: '1px solid #c4b5fd',
+        borderRadius: '8px'
+      }}>
+        <h2 style={{ fontSize: '1rem', marginBottom: '0.75rem' }}>
+          🧪 Test Lab 3 Buổi 6: useRef (focus & đếm render)
+        </h2>
+        <TimMonAn />
       </div>
 
       <CategoryTabs

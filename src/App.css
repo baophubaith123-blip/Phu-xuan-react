@@ -395,6 +395,45 @@ p {
 }
 
 /* ============================================================
+   Lab 3 Buổi 6 — Ô tìm kiếm tự động focus (TimMonAn)
+   ============================================================ */
+
+.tim-mon-an {
+  padding: 1rem;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.tim-mon-an__input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 2px solid #c4b5fd;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+
+.tim-mon-an__input:focus {
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+}
+
+.tim-mon-an__input::placeholder {
+  color: #9ca3af;
+}
+
+.tim-mon-an__render-count {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: #7c3aed;
+  font-weight: 600;
+  font-style: italic;
+}
+
+/* ============================================================
    Responsive cho mobile
    ============================================================ */
 @media (max-width: 640px) {
@@ -441,5 +480,10 @@ p {
   .trang-mon-an__buttons button {
     padding: 5px 10px;
     font-size: 0.8rem;
+  }
+
+  .tim-mon-an__input {
+    font-size: 0.95rem;
+    padding: 8px 12px;
   }
 }

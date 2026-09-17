@@ -164,3 +164,110 @@
   accent-color: #0f6e6a;
   margin: 0;
 }
+
+/* ============================================================
+   Lab 3 Buổi 8 — Thông báo lỗi, trạng thái gửi
+   ============================================================ */
+
+/* --- Thông báo lỗi dưới mỗi ô --- */
+.thong-bao-loi {
+  color: #be123c;
+  font-size: 0.8rem;
+  margin: 0;
+  padding: 2px 0 0;
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.thong-bao-loi::before {
+  content: '⚠';
+  font-style: normal;
+}
+
+/* --- Input có lỗi — viền đỏ --- */
+.truong input[aria-invalid='true'],
+.truong textarea[aria-invalid='true'],
+.truong select[aria-invalid='true'] {
+  border-color: #be123c;
+  background: #fff5f5;
+}
+
+.truong input[aria-invalid='true']:focus,
+.truong textarea[aria-invalid='true']:focus,
+.truong select[aria-invalid='true']:focus {
+  box-shadow: 0 0 0 3px rgba(190, 18, 60, 0.15);
+}
+
+/* --- Thông báo thành công --- */
+.thong-bao-thanh-cong {
+  color: #15803d;
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.thong-bao-thanh-cong::before {
+  content: '✓ ';
+}
+
+/* --- Thông báo thất bại --- */
+.thong-bao-that-bai {
+  color: #be123c;
+  background: #fff5f5;
+  border: 1px solid #f9a8a8;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* --- Nhóm nút cuối form --- */
+.nhom-nut {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.nhom-nut button {
+  margin: 0;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: 1px solid #c9d3de;
+  background: #fff;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.nhom-nut button[type='submit'] {
+  background: #0f6e6a;
+  border-color: #0f6e6a;
+  color: #fff;
+}
+
+.nhom-nut button[type='submit']:hover:not(:disabled) {
+  background: #0a5c58;
+  border-color: #0a5c58;
+}
+
+.nhom-nut button[type='submit']:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: #9ca3af;
+  border-color: #9ca3af;
+}
+
+.nhom-nut button[type='button']:hover {
+  background: #f0f9f9;
+  border-color: #0f6e6a;
+  color: #0f6e6a;
+}

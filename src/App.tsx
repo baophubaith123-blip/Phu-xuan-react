@@ -1,27 +1,18 @@
-// App.tsx — Lab 3 Buổi 4: Bug Hunt
+// App.tsx — Lab 4 Buổi 4: Tách component địa điểm
 // Buổi 4 · INT.7.18 — Web FrontEnd nâng cao
 
+import DiaDiem1 from "./components/DiaDiem1";
+import DiaDiem2 from "./components/DiaDiem2";
+import DiaDiem3 from "./components/DiaDiem3";
+
 function App() {
-  const soLuongDiaDiem = 3;
-  const trangThaiMoCua = true;
-
   return (
-    // ✅ Lỗi 3: Bọc tất cả trong Fragment
-    <>
-      {/* ✅ Lỗi 2: class → className */}
-      <div className="trang-chu">
-        <h1>Danh sách địa điểm</h1>
-        <p>Tổng số địa điểm: {soLuongDiaDiem}</p>
-      </div>
-
-      {/* ✅ Lỗi 4: Thêm dấu : vào ternary */}
-      <p>
-        Trạng thái: {trangThaiMoCua ? "Đang mở cửa" : "Đã đóng cửa"}
-      </p>
-
-      {/* ✅ Lỗi 5: Thẻ img tự đóng */}
-      <img src="https://placehold.co/60x60" alt="placeholder" />
-    </>
+    <div className="trang-chu">
+      <h1>Danh sách địa điểm — phu-xuan-react</h1>
+      <DiaDiem1 />
+      <DiaDiem2 />
+      <DiaDiem3 />
+    </div>
   );
 }
 

@@ -1,16 +1,16 @@
-// App.tsx — Buổi 6 · Lab 1: Test useEffect & Cleanup
-// Buổi 5 · INT.7.18 — Web FrontEnd nâng cao
+// App.tsx — Buổi 6 · Lab 2: Test useEffect với dependency
 
 import { useState } from 'react';
 import './App.css';
 import AttractionList from './components/AttractionList';
 import CategoryTabs from './components/CategoryTabs';
 import LuotXemDaiNoi from './features/landmarks/LuotXemDaiNoi';
+import TrangMonAn from './features/food/TrangMonAn';   // ← Thêm dòng này
 import { attractions } from './data/attractions';
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState('Tất cả');
-  const [hienThi, setHienThi] = useState(true);  // ← State cho nút test
+  const [hienThi, setHienThi] = useState(true);
 
   const categories = [
     'Tất cả',
@@ -26,7 +26,7 @@ function App() {
     <div className="app">
       <h1>Khám phá Huế</h1>
 
-      {/* === TEST LAB 1 BUỔI 6: Đồng hồ đếm lượt xem === */}
+      {/* === Lab 1 Buổi 6: Đồng hồ đếm lượt xem === */}
       <div style={{
         padding: '1rem',
         marginBottom: '1.5rem',
@@ -37,7 +37,6 @@ function App() {
         <h2 style={{ fontSize: '1rem', marginBottom: '0.75rem' }}>
           🧪 Test Lab 1 Buổi 6: useEffect Cleanup
         </h2>
-
         <button
           onClick={() => setHienThi(!hienThi)}
           style={{
@@ -52,10 +51,22 @@ function App() {
         >
           {hienThi ? '👁 Ẩn thẻ Đại Nội' : '👁 Hiện thẻ Đại Nội'}
         </button>
-
         {hienThi && <LuotXemDaiNoi />}
       </div>
-      {/* === HẾT PHẦN TEST === */}
+
+      {/* === Lab 2 Buổi 6: Xem chi tiết món ăn === */}
+      <div style={{
+        padding: '1rem',
+        marginBottom: '1.5rem',
+        background: '#fce7f3',
+        border: '1px solid #f9a8d4',
+        borderRadius: '8px'
+      }}>
+        <h2 style={{ fontSize: '1rem', marginBottom: '0.75rem' }}>
+          🧪 Test Lab 2 Buổi 6: useEffect với dependency
+        </h2>
+        <TrangMonAn />
+      </div>
 
       <CategoryTabs
         categories={categories}

@@ -1,6 +1,6 @@
 /* ============================================================
    App.css — phu-xuan-react
-   Buổi 5 · INT.7.18 — Web FrontEnd nâng cao
+   Buổi 5–6 · INT.7.18 — Web FrontEnd nâng cao
    ============================================================ */
 
 /* --- Reset & Typography cơ bản --- */
@@ -43,7 +43,6 @@ p {
    Lab 1 Buổi 5 — Attraction List & Card
    ============================================================ */
 
-/* --- Danh sách thẻ: dạng lưới responsive --- */
 .attraction-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -51,7 +50,6 @@ p {
   margin-top: 1rem;
 }
 
-/* --- Thẻ địa điểm --- */
 .attraction-card {
   position: relative;
   border: 1px solid #e5e7eb;
@@ -69,7 +67,6 @@ p {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* --- Badge danh mục (Di tích, Chợ, Cầu...) --- */
 .attraction-card__badge {
   display: inline-block;
   align-self: flex-start;
@@ -84,14 +81,12 @@ p {
   letter-spacing: 0.5px;
 }
 
-/* --- Tiêu đề địa điểm --- */
 .attraction-card h3 {
   font-size: 1.15rem;
   margin-bottom: 0.5rem;
   color: #111827;
 }
 
-/* --- Mô tả --- */
 .attraction-card p {
   font-size: 0.9rem;
   color: #4b5563;
@@ -99,7 +94,6 @@ p {
   margin-bottom: 0.75rem;
 }
 
-/* --- Điểm đánh giá (sao vàng) --- */
 .attraction-card__rating {
   display: inline-block;
   color: #f59e0b;
@@ -136,7 +130,6 @@ p {
   transform: scale(1.05);
 }
 
-/* Trạng thái "đã lưu" — trái tim đỏ */
 .attraction-card__favorite.is-active {
   background: #dc2626;
   border-color: #dc2626;
@@ -179,7 +172,6 @@ p {
   color: #0f766e;
 }
 
-/* Tab đang chọn — nổi bật */
 .category-tabs button.is-active {
   background: #0f766e;
   border-color: #0f766e;
@@ -220,7 +212,6 @@ p {
   transform: scale(1.2);
 }
 
-/* Sao đã tô — vàng */
 .star-rating .star.is-filled {
   color: #f59e0b;
 }
@@ -281,7 +272,6 @@ p {
   transform: scale(1.05);
 }
 
-/* Nút bị vô hiệu hóa — giới hạn đã chạm */
 .ticket-counter__controls button:disabled {
   opacity: 0.35;
   cursor: not-allowed;
@@ -307,6 +297,101 @@ p {
 .ticket-counter__total strong {
   color: #dc2626;
   font-size: 1rem;
+}
+
+/* ============================================================
+   Lab 1 Buổi 6 — Đồng hồ đếm lượt xem (LuotXemDaiNoi)
+   ============================================================ */
+
+.the-luot-xem {
+  padding: 1rem;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.the-luot-xem h3 {
+  color: #0f766e;
+  margin-bottom: 0.25rem;
+  font-size: 1.1rem;
+}
+
+.the-luot-xem p {
+  color: #dc2626;
+  font-weight: 700;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* ============================================================
+   Lab 2 Buổi 6 — Chi tiết món ăn (TrangMonAn & ChiTietMonAn)
+   ============================================================ */
+
+.trang-mon-an h2 {
+  color: #be185d;
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+}
+
+.trang-mon-an__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 1rem;
+}
+
+.trang-mon-an__buttons button {
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid #f9a8d4;
+  background: #ffffff;
+  color: #be185d;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.trang-mon-an__buttons button:hover {
+  background: #fce7f3;
+}
+
+.trang-mon-an__buttons button.is-active {
+  background: #be185d;
+  border-color: #be185d;
+  color: #ffffff;
+}
+
+.chi-tiet-mon-an {
+  padding: 1rem;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  min-height: 100px;
+}
+
+.chi-tiet-mon-an h3 {
+  color: #be185d;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.chi-tiet-mon-an p {
+  color: #4b5563;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.chi-tiet-mon-an__loading {
+  color: #6b7280;
+  font-style: italic;
+  padding: 1rem;
+}
+
+.chi-tiet-mon-an__error {
+  color: #dc2626;
+  padding: 1rem;
 }
 
 /* ============================================================
@@ -351,5 +436,10 @@ p {
     width: 28px;
     height: 28px;
     font-size: 1rem;
+  }
+
+  .trang-mon-an__buttons button {
+    padding: 5px 10px;
+    font-size: 0.8rem;
   }
 }

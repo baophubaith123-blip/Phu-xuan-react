@@ -1,4 +1,11 @@
-/* Bai8.css — Style cho Bài 8: Biểu mẫu có kiểm soát */
+/* ============================================================
+   Bai8.css — Style cho Bài 8: Biểu mẫu có kiểm soát
+   Buổi 8 · INT.7.18 — Web FrontEnd nâng cao
+   ============================================================ */
+
+/* ============================================================
+   Layout chung trang Bài 8
+   ============================================================ */
 
 .trang-Bai8 {
   max-width: 880px;
@@ -12,7 +19,10 @@
   margin-bottom: 24px;
 }
 
-/* --- Form chung --- */
+/* ============================================================
+   Lab 1 — Form chung
+   ============================================================ */
+
 .form-dia-diem {
   border: 1px solid #c9d3de;
   border-radius: 12px;
@@ -68,7 +78,7 @@
   min-height: 80px;
 }
 
-/* --- Debug --- */
+/* --- Debug (dùng tạm ở Bước 3, xóa ở Bước 4) --- */
 .debug-json {
   background: #f3f4f6;
   border: 1px solid #c9d3de;
@@ -79,4 +89,78 @@
   color: #1f2937;
   overflow-x: auto;
   max-height: 240px;
+}
+
+/* ============================================================
+   Lab 2 Buổi 8 — Radio, checkbox, fieldset
+   ============================================================ */
+
+/* --- Fieldset nhóm (Loại hình, Tiện ích) --- */
+.form-dia-diem fieldset {
+  border: 1px solid #c9d3de;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+}
+
+.form-dia-diem legend {
+  font-weight: 600;
+  color: #0f6e6a;
+  padding: 0 6px;
+  font-size: 0.9rem;
+}
+
+/* --- Label trong fieldset (radio/checkbox) --- */
+.form-dia-diem fieldset label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 4px;
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: #1f2937;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.15s ease;
+}
+
+.form-dia-diem fieldset label:hover {
+  background: #f0f9f9;
+}
+
+.form-dia-diem fieldset input[type='radio'],
+.form-dia-diem fieldset input[type='checkbox'] {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  accent-color: #0f6e6a;
+  margin: 0;
+}
+
+/* --- Hộp kiểm xác nhận (ngoài fieldset) --- */
+.form-dia-diem > label.hop-kiem-xac-nhan {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  margin-bottom: 16px;
+  background: #f9fafb;
+  border: 1px solid #c9d3de;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: background 0.15s ease;
+}
+
+.form-dia-diem > label.hop-kiem-xac-nhan:hover {
+  background: #f0f9f9;
+}
+
+.form-dia-diem > label.hop-kiem-xac-nhan input[type='checkbox'] {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  accent-color: #0f6e6a;
+  margin: 0;
 }

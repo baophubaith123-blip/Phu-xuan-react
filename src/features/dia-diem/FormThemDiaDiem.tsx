@@ -1,5 +1,5 @@
 // FormThemDiaDiem.tsx — Form thêm địa điểm tham quan
-// Buổi 8 · Lab 1: Biểu mẫu có kiểm soát cơ bản (3 ô đầu tiên)
+// Buổi 8 · Lab 1+2: Biểu mẫu có kiểm soát đầy đủ
 // INT.7.18 — Web FrontEnd nâng cao
 
 import { useState } from 'react';
@@ -25,9 +25,27 @@ const GIA_TRI_BAN_DAU: DuLieuForm = {
   dongY: false,
 };
 
+// ✅ Danh sách tiện ích (Lab 2)
+interface TienIch {
+  ma: string;
+  ten: string;
+}
+
+const DS_TIEN_ICH: TienIch[] = [
+  { ma: 'bai-xe', ten: 'Bãi đỗ xe' },
+  { ma: 'huong-dan', ten: 'Có hướng dẫn viên' },
+  { ma: 've-online', ten: 'Bán vé trực tuyến' },
+  { ma: 'khu-ve-sinh', ten: 'Khu vệ sinh công cộng' },
+];
+
 export default function FormThemDiaDiem() {
+  // ✅ State 1: Dữ liệu form (object)
   const [duLieu, setDuLieu] = useState<DuLieuForm>(GIA_TRI_BAN_DAU);
 
+  // ✅ State 2: Mảng tiện ích được chọn (tách riêng vì là mảng)
+  const [tienIch, setTienIch] = useState<string[]>([]);
+
+  // ✅ Handler duy nhất cho MỌI ô nhập object (text, textarea, select, radio, checkbox đơn)
   function xuLyThayDoi(
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) {
@@ -38,6 +56,16 @@ export default function FormThemDiaDiem() {
       ...truoc,
       [name]: type === 'checkbox' ? checked : value,
     }));
+  }
+
+  // ✅ Handler riêng cho nhóm tiện ích (vì lưu vào mảng)
+  function xuLyTich(e: ChangeEvent<HTMLInputElement>) {
+    const { value, checked } = e.target;
+    setTienIch((truoc) =>
+      checked
+        ? [...truoc, value]
+        : truoc.filter((ma) => ma !== value)
+    );
   }
 
   return (
@@ -70,7 +98,21 @@ export default function FormThemDiaDiem() {
         />
       </div>
 
-      {/* ===== Ô 3: Phường / xã ===== */}
+      {/* ===== Ô 3: Giá vé (Lab 2) ===== */}
+      <div className="truong">
+        <label htmlFor="giaVe">Giá vé (VNĐ)</label>
+        <input
+          id="giaVe"
+          name="giaVe"
+          type="number"
+          value={duLieu.giaVe}
+          onChange={xuLyThayDoi}
+          placeholder="0"
+          min={0}
+        />
+      </div>
+
+      {/* ===== Ô 4: Phường / xã ===== */}
       <div className="truong">
         <label htmlFor="phuong">Phường / xã</label>
         <select
@@ -86,6 +128,58 @@ export default function FormThemDiaDiem() {
           <option value="vy-da">Vỹ Dạ</option>
         </select>
       </div>
+
+      {/* ===== Ô 5: Nhóm nút chọn "Loại hình" (Lab 2) ===== */}
+      <fieldset>
+        <legend>Loại hình</legend>
+        <label>
+          <input
+            name="loaiHinh"
+            type="radio"
+            value="di-tich"
+            checked={duLieu.loaiHinh === 'di-tich'}
+            onChange={xuLyThayDoi}
+          />
+          Di tích lịch sử
+        </label>
+        <label>
+          <input
+            name="loaiHinh"
+            type="radio"
+            value="am-thuc"
+            checked={duLieu.loaiHinh === 'am-thuc'}
+            onChange={xuLyThayDoi}
+          />
+          Điểm ẩm thực
+        </label>
+      </fieldset>
+
+      {/* ===== Ô 6: Nhóm tiện ích (Lab 2) ===== */}
+      <fieldset>
+        <legend>Tiện ích tại điểm đến</legend>
+        {DS_TIEN_ICH.map((ti) => (
+          <label key={ti.ma}>
+            <input
+              type="checkbox"
+              value={ti.ma}
+              checked={tienIch.includes(ti.ma)}
+              onChange={xuLyTich}
+            />
+            {ti.ten}
+          </label>
+        ))}
+      </fieldset>
+
+      {/* ===== Ô 7: Hộp kiểm xác nhận (Lab 2) ===== */}
+      <label className="hop-kiem-xac-nhan">
+        <input
+          name="dongY"
+          type="checkbox"
+          checked={duLieu.dongY}
+          onChange={xuLyThayDoi}
+        />
+        Tôi xác nhận thông tin địa điểm là chính xác
+      </label>
     </form>
   );
 }

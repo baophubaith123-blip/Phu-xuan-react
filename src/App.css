@@ -1,4 +1,4 @@
-/* App.css — Buổi 9 · Lab 4: Trang danh mục */
+/* App.css — Buổi 10: Layout + Tour Grid */
 
 * {
   box-sizing: border-box;
@@ -12,17 +12,383 @@ body {
   line-height: 1.5;
 }
 
-h2 {
-  color: #1b2a4a;
-  margin-top: 28px;
-  margin-bottom: 12px;
-  font-size: 1.15rem;
-  padding-bottom: 6px;
-  border-bottom: 2px solid #e5e7eb;
+/* ============================================================
+   Price Filter — Nằm dọc trong sidebar
+   ============================================================ */
+
+.price-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.luoi-dia-danh {
+.price-filter label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #1b2a4a;
+}
+
+.price-filter input[type='range'] {
+  width: 100%;
+  accent-color: #0f6e6a;
+  cursor: pointer;
+}
+
+.price-filter span {
+  color: #dc2626;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-align: right;
+}
+
+/* ============================================================
+   Filter Summary
+   ============================================================ */
+
+.filter-summary {
+  color: #52606d;
+  font-size: 0.9rem;
+  margin: 0 0 16px;
+  padding: 8px 12px;
+  background: #ffffff;
+  border: 1px solid #cbd2d9;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+/* ============================================================
+   Tour Grid — Lưới responsive
+   ============================================================ */
+
+.tour-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 16px;
+  width: 100%;
+}
+
+/* ============================================================
+   Tour Card
+   ============================================================ */
+
+.tour-card {
+  border: 1px solid #cbd2d9;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.tour-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.tour-card__anh {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  display: block;
+}
+
+.tour-card__than {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.tour-card__ten {
+  margin: 0;
+  color: #1b2a4a;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  line-height: 1.3;
+}
+
+.tour-card__hot {
+  background: #dc2626;
+  color: #ffffff;
+  font-size: 0.6rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+.tour-card__gia {
+  margin: 0;
+  color: #0f6e6a;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* ============================================================
+   Search Box
+   ============================================================ */
+
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 10px 40px 10px 14px;
+  border: 2px solid #cbd2d9;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.search-box input:focus {
+  border-color: #0f6e6a;
+  box-shadow: 0 0 0 3px rgba(15, 110, 106, 0.15);
+}
+
+.search-box input::placeholder {
+  color: #9ca3af;
+}
+
+.search-box__clear {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #e5e7eb;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #6b7280;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.search-box__clear:hover {
+  background: #dc2626;
+  color: #ffffff;
+}
+
+/* ============================================================
+   Empty State
+   ============================================================ */
+
+.empty-state {
+  text-align: center;
+  padding: 32px 24px;
+  background: #fef3c7;
+  border: 1px solid #fbbf24;
+  border-radius: 10px;
+  color: #92400e;
+  font-style: italic;
+  font-size: 0.95rem;
+}
+/* ============================================================
+   Lab 4 Buổi 10 — Top Nav (chuyển tab)
+   ============================================================ */
+
+.top-nav {
+  display: flex;
+  gap: 4px;
+  padding: 12px 24px;
+  background: #1b2a4a;
+  border-bottom: 2px solid #0f6e6a;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.top-nav button {
+  padding: 8px 20px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #c9d3de;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.top-nav button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.top-nav button.is-active {
+  background: #0f6e6a;
+  color: #ffffff;
+  border-color: #0f6e6a;
+}
+
+/* ============================================================
+   Lab 4 Buổi 10 — Di tích
+   ============================================================ */
+
+/* --- Bộ lọc --- */
+.ditich-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ditich-filter__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #1b2a4a;
+}
+
+.ditich-filter__field select {
+  padding: 8px 12px;
+  border: 2px solid #cbd2d9;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.ditich-filter__field select:focus {
+  border-color: #0f6e6a;
+}
+
+.ditich-filter__checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: #1f2937;
+  cursor: pointer;
+}
+
+.ditich-filter__checkbox input {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  accent-color: #0f6e6a;
+}
+
+.ditich-filter__reset {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 1px solid #cbd2d9;
+  background: #ffffff;
+  color: #1b2a4a;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s ease;
+}
+
+.ditich-filter__reset:hover {
+  background: #f0f9f9;
+  border-color: #0f6e6a;
+  color: #0f6e6a;
+}
+
+/* --- Lưới di tích --- */
+.ditich-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+/* --- Thẻ di tích --- */
+.ditich-card {
+  border: 1px solid #cbd2d9;
+  border-radius: 10px;
+  padding: 16px;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ditich-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Thẻ đã tham quan — viền xanh, nền nhạt */
+.ditich-card--visited {
+  border-color: #0f6e6a;
+  background: #f0f9f9;
+}
+
+.ditich-card__ten {
+  margin: 0;
+  color: #1b2a4a;
+  font-size: 1rem;
+}
+
+.ditich-card__meta {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #6b7280;
+  text-transform: capitalize;
+  font-style: italic;
+}
+
+.ditich-card__desc {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #4b5563;
+  flex: 1;
+  line-height: 1.4;
+}
+
+.ditich-card__btn {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #0f6e6a;
+  background: #ffffff;
+  color: #0f6e6a;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s ease;
+  align-self: flex-start;
+}
+
+.ditich-card__btn:hover {
+  background: #0f6e6a;
+  color: #ffffff;
+}
+
+.ditich-card--visited .ditich-card__btn {
+  background: #0f6e6a;
+  color: #ffffff;
+}
+
+.ditich-card--visited .ditich-card__btn:hover {
+  background: #0a5c58;
 }

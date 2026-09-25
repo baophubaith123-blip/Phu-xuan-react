@@ -1,47 +1,61 @@
-// App.tsx — Buổi 9 · Lab 2: Thành phần khung The với children
+// App.tsx — Buổi 9 · Lab 3: Khe JSX + Render Props
 // INT.7.18 — Web FrontEnd nâng cao
 
-import The from './components/Bai9/The';
+import BoCucTrang from './components/Bai9/BoCucTrang';
+import DanhSach from './components/Bai9/DanhSach';
 import TheDiaDanh from './components/Bai9/TheDiaDanh';
 import { DANH_SACH_DIA_DANH } from './du-lieu/diaDanh';
+import { DANH_SACH_MON_AN } from './du-lieu/monAn';
 import './App.css';
 
 function App() {
   return (
-    <div className="trang">
-      <h1>Khám phá Cố đô Huế</h1>
+    <BoCucTrang
+      // ✅ Khe 1: Header
+      thanhDieuHuong="Du lịch Huế — phu-xuan-react"
 
-      {/* ===== Khung 1: Chứa lưới địa danh ===== */}
-      <The tieuDe="Di tích tiêu biểu">
-        <div className="luoi-dia-danh">
-          {DANH_SACH_DIA_DANH.map((dd) => (
-            <TheDiaDanh
-              key={dd.id}
-              anh={dd.anh}
-              ten={dd.ten}
-              moTa={dd.moTa}
-            />
-          ))}
-        </div>
-      </The>
+      // ✅ Khe 3: Footer
+      chanTrang={<span>© 2026 Nhóm — INT.7.18</span>}
 
-      {/* ===== Khung 2: Chứa danh sách ẩm thực ===== */}
-      <The tieuDe="Ẩm thực Huế">
-        <ul>
-          <li>Bún bò Huế</li>
-          <li>Cơm hến</li>
-          <li>Bánh bèo, bánh nậm, bánh lọc</li>
-        </ul>
-      </The>
+      // ✅ Khe 2: Main — chứa nhiều phần tử, dùng Fragment
+      noiDungChinh={
+        <>
+          <h2>Địa danh</h2>
+          <div className="luoi-dia-danh">
+            {DANH_SACH_DIA_DANH.map((dd) => (
+              <TheDiaDanh
+                key={dd.id}
+                anh={dd.anh}
+                ten={dd.ten}
+                moTa={dd.moTa}
+              />
+            ))}
+          </div>
 
-      {/* ===== Khung 3: Không có tiêu đề (test conditional) ===== */}
-      <The>
-        <p>
-          💡 Khung này <strong>không có tiêu đề</strong> — vì prop{' '}
-          <code>tieuDe</code> không được truyền.
-        </p>
-      </The>
-    </div>
+          {/* ===== Danh sách 1: Kiểu chữ đậm ===== */}
+          <h2>Ẩm thực (kiểu chữ)</h2>
+          <DanhSach
+            cacMuc={DANH_SACH_MON_AN}
+            hienThiMuc={(mon) => (
+              <strong>
+                {mon.ten} — {mon.gia.toLocaleString('vi-VN')}đ
+              </strong>
+            )}
+          />
+
+          {/* ===== Danh sách 2: Kiểu có nút (CÙNG DanhSach, CÙNG dữ liệu) ===== */}
+          <h2>Ẩm thực (kiểu có nút)</h2>
+          <DanhSach
+            cacMuc={DANH_SACH_MON_AN}
+            hienThiMuc={(mon) => (
+              <span>
+                {mon.ten} <button>Đặt món</button>
+              </span>
+            )}
+          />
+        </>
+      }
+    />
   );
 }
 

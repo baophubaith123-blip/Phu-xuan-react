@@ -1,0 +1,44 @@
+/* DanhSach.css — Style cho danh sách (Buổi 9 · Lab 3) */
+
+.danh-sach {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.danh-sach li {
+  padding: 10px 14px;
+  margin: 6px 0;
+  background: #ffffff;
+  border: 1px solid #cbd2d9;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.danh-sach li:hover {
+  background: #f0f9f9;
+  border-color: #0f6e6a;
+}
+
+.danh-sach li button {
+  padding: 4px 12px;
+  border-radius: 6px;
+  border: 1px solid #0f6e6a;
+  background: #ffffff;
+  color: #0f6e6a;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.danh-sach li button:hover {
+  background: #0f6e6a;
+  color: #ffffff;
+}

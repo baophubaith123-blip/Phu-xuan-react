@@ -1,4 +1,4 @@
-/* App.css — Buổi 9: Tái sử dụng & Kết hợp thành phần */
+/* App.css — Buổi 9 · Lab 3: Khe JSX + Render Props */
 
 * {
   box-sizing: border-box;
@@ -12,48 +12,19 @@ body {
   line-height: 1.5;
 }
 
-.trang {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 24px;
-}
-
-.trang > h1 {
+h2 {
   color: #1b2a4a;
-  margin-bottom: 20px;
-  text-align: center;
+  margin-top: 28px;
+  margin-bottom: 12px;
+  font-size: 1.15rem;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #e5e7eb;
 }
 
+/* --- Lưới địa danh --- */
 .luoi-dia-danh {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 16px;
-}
-/* ============================================================
-   Lab 2 Buổi 9 — Danh sách ẩm thực trong khung The
-   ============================================================ */
-
-.the__than ul {
-  margin: 0;
-  padding-left: 20px;
-  color: #4b5563;
-}
-
-.the__than ul li {
-  padding: 4px 0;
-  font-size: 0.95rem;
-}
-
-.the__than p {
-  margin: 0;
-  color: #4b5563;
-  font-size: 0.95rem;
-}
-
-.the__than p code {
-  background: #f3f4f6;
-  padding: 2px 6px;
-  border-radius: 4px;
-  color: #0f6e6a;
-  font-size: 0.85rem;
+  margin-bottom: 24px;
 }

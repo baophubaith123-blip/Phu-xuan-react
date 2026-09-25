@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { tours } from '../../data/tours';
 import { TourListView } from './TourListView';
 
+// ⚠️ TODO: Chuyển logic này vào useTourList (xem commit sau)
 export function TourListContainer() {
   // ✅ 3 state — đều nằm ở Container (cha chung gần nhất)
   const [minPrice, setMinPrice] = useState(0);

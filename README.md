@@ -30,3 +30,22 @@ Mở http://localhost:5173
 ## Ảnh chụp giao diện
 
 ![giao dien](./anh-chup/trang-danh-muc.png)
+Lab 5 — Thành phần tái sử dụng của riêng nhóm
+
+### Nut — Nút đa biến thể
+
+**Vì sao chọn props + children cho Nut?**
+
+- **Props** (`loai`, `kichThuoc`, `onClick`) được dùng cho những gì **có cấu trúc rõ ràng**: biến thể màu (3 lựa chọn cố định), kích thước (3 lựa chọn cố định), hành động khi bấm.
+- **Children** được dùng cho **nội dung không biết trước**: nhãn nút có thể là chữ thuần, emoji + chữ, hay icon + text — do nơi gọi quyết định.
+
+**So sánh với sơ đồ quyết định ở lý thuyết:**
+- Nếu nội dung **có cấu trúc cố định** → dùng props (VD: `loai="chinh"`).
+- Nếu nội dung **tùy ý, không biết trước** → dùng children (VD: nhãn nút).
+
+**Số lần dùng lại:** 4 lần trong `TrangDanhMuc`:
+1. Nút "Đăng nhập" ở header (biến thể `phu`, kích thước `nho`).
+2. Nút "Xem tất cả địa danh" (biến thể `chinh`, kích thước `vua`).
+3. Nút "Yêu thích" (biến thể `phu`, kích thước `vua`).
+4. 3 nút "Đặt món" trong danh sách ẩm thực (biến thể `chinh`, kích thước `nho`).
+5. Nút "Xoá danh mục" (biến thể `nguy-hiem`).

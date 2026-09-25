@@ -1,0 +1,87 @@
+/* Nut.css — Style cho nút tái sử dụng (Buổi 9 · Lab 5) */
+
+/* ============================================================
+   Base style — áp dụng cho mọi nút
+   ============================================================ */
+
+.nut {
+  border-radius: 8px;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.nut:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ============================================================
+   Biến thể theo `loai`
+   ============================================================ */
+
+/* --- Nút chính (xanh teal) --- */
+.nut--chinh {
+  background: #0f6e6a;
+  color: #ffffff;
+  border-color: #0f6e6a;
+}
+
+.nut--chinh:hover:not(:disabled) {
+  background: #0a5c58;
+  border-color: #0a5c58;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15, 110, 106, 0.25);
+}
+
+/* --- Nút phụ (viền, nền trắng) --- */
+.nut--phu {
+  background: #ffffff;
+  color: #0f6e6a;
+  border-color: #0f6e6a;
+}
+
+.nut--phu:hover:not(:disabled) {
+  background: #f0f9f9;
+  transform: translateY(-1px);
+}
+
+/* --- Nút nguy hiểm (đỏ) --- */
+.nut--nguy-hiem {
+  background: #dc2626;
+  color: #ffffff;
+  border-color: #dc2626;
+}
+
+.nut--nguy-hiem:hover:not(:disabled) {
+  background: #b91c1c;
+  border-color: #b91c1c;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.25);
+}
+
+/* ============================================================
+   Kích thước theo `kichThuoc`
+   ============================================================ */
+
+.nut--nho {
+  padding: 4px 10px;
+  font-size: 0.8rem;
+}
+
+.nut--vua {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+}
+
+.nut--lon {
+  padding: 12px 24px;
+  font-size: 1rem;
+}

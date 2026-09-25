@@ -1,0 +1,11 @@
+/* HopThongBao.css — Style cho hộp thông báo (Buổi 9 · Lab 4) */
+
+.hop-thong-bao {
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin: 12px 0;
+  font-size: 0.95rem;
+  color: #1f2937;
+  line-height: 1.5;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}

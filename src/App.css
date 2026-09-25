@@ -1,4 +1,4 @@
-/* App.css — Buổi 9 · Lab 3: Khe JSX + Render Props */
+/* App.css — Buổi 9 · Lab 4: Trang danh mục */
 
 * {
   box-sizing: border-box;
@@ -21,10 +21,8 @@ h2 {
   border-bottom: 2px solid #e5e7eb;
 }
 
-/* --- Lưới địa danh --- */
 .luoi-dia-danh {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 16px;
-  margin-bottom: 24px;
 }

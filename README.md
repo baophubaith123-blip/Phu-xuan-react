@@ -1,32 +1,32 @@
-# React + TypeScript + Vite
+# phu-xuan-react — Bài 9
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+## Cài đặt & chạy
+npm install
+npm run dev
 
-Currently, two official plugins are available:
+text
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Mở http://localhost:5173
 
-## React Compiler
+## Thành phần đã xây dựng
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **TheDiaDanh** — thẻ địa danh tái sử dụng qua props (có giá trị mặc định cho `moTa`)
+- **The** — khung có `children` và thanh tiêu đề tùy chọn
+- **BoCucTrang** — bố cục 3 khe JSX (header / main / footer)
+- **DanhSach** — danh sách dùng mẫu render props (tách logic khỏi hiển thị)
+- **HopThongBao** / **HopThongBaoThanhCong** — kết hợp & chuyên biệt hóa
+- **TrangDanhMuc** — trang danh mục hoàn chỉnh lắp ghép từ các thành phần trên
 
-## Expanding the Oxlint configuration
+## Giải thích thiết kế
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+### Vì sao chọn props/children cho từng thành phần?
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+- **TheDiaDanh** dùng **props** (`anh`, `ten`, `moTa`) vì dữ liệu có cấu trúc rõ ràng — mỗi trường là một kiểu dữ liệu cụ thể.
+- **The** dùng **children** vì nội dung bên trong không biết trước — nơi gọi quyết định nhét gì vào (lưới, danh sách, đoạn văn...).
+- **BoCucTrang** dùng **khe JSX** (3 prop JSX) vì có **3 vùng riêng biệt** (header / main / footer) — nếu dùng `children` thì không phân biệt được vùng nào.
+- **DanhSach** dùng **render props** vì cần **tách logic khung (ul/li/key)** khỏi **cách hiển thị từng mục** — cho phép cùng dữ liệu hiển thị theo nhiều kiểu khác nhau.
+- **HopThongBaoThanhCong** dùng **composition** (không kế thừa) để **chuyên biệt hóa** `HopThongBao` — chỉ ghi đè `mauNen` và thêm prefix "Thành công!".
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Ảnh chụp giao diện
+
+![giao dien](./anh-chup/trang-danh-muc.png)

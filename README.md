@@ -30,3 +30,42 @@ Mở http://localhost:5173
 ## Ảnh chụp giao diện
 
 ![giao dien](./anh-chup/trang-danh-muc.png)
+## Buổi 10 — Lab 5 BONUS: Refactor trang Tour
+
+### Trước refactor
+
+```text
+TourListContainer (state + logic lọc)
+└── TourListView (8 props)
+    └── PageLayout
+        ├── SearchBox
+        ├── PriceFilter
+        └── TourGrid
+Sau refactor
+text
+TourListView (gọi hook trực tiếp)
+├── useTourList ← Custom Hook: state + logic
+└── PageLayout
+    ├── SearchBox
+    ├── PriceFilter
+    └── TourGrid
+Vì sao chọn Custom Hook?
+Đóng gói logic — 3 state (minPrice, maxPrice, query) + logic lọc → gói vào 1 hook.
+
+View gọn hơn — View không còn nhận 8 props, chỉ gọi useTourList(tours).
+
+Tái sử dụng — Có thể dùng hook này cho trang khác (VD: Di tích).
+
+Nhất quán — Cùng pattern với useDiTichList của Lab 4.
+
+Ghi chú
+Hình thức: Làm cá nhân (do chưa ghép nhóm đồ án).
+
+Người thực hiện: Nguyễn Gia Bảo (2401ITA006).
+
+Sơ đồ chi tiết: Xem docs/buoi10-lab5/before.md và docs/buoi10-lab5/target.md.
+
+text
+
+Nhấn **Ctrl + S**.
+

@@ -1,62 +1,50 @@
-// TourListView.tsx — View dùng PageLayout với 3 khe
-// Buổi 10 · Lab 3: Kết hợp composition (PageLayout) + render (TourGrid)
+// TourListView.tsx — View gọi Custom Hook trực tiếp (không cần Container)
+// Buổi 10 · Lab 5: Custom Hook thay Container
 // INT.7.18 — Web FrontEnd nâng cao
 
-import type { Tour } from '../../data/tours';
+import { tours } from '../../data/tours';
+import { useTourList } from './useTourList';
 import { PageLayout } from '../../components/PageLayout';
 import { PriceFilter } from './PriceFilter';
 import { SearchBox } from './SearchBox';
 import { TourGrid } from './TourGrid';
 
-interface TourListViewProps {
-  filteredTours: Tour[];
-  totalCount: number;
-  minPrice: number;
-  maxPrice: number;
-  query: string;
-  onMinChange: (value: number) => void;
-  onMaxChange: (value: number) => void;
-  onQueryChange: (value: string) => void;
-}
+export function TourListView() {
+  // ✅ View gọi hook trực tiếp — KHÔNG cần Container
+  const {
+    filteredTours,
+    totalCount,
+    minPrice,
+    maxPrice,
+    query,
+    setMinPrice,
+    setMaxPrice,
+    setQuery,
+  } = useTourList(tours);
 
-export function TourListView({
-  filteredTours,
-  totalCount,
-  minPrice,
-  maxPrice,
-  query,
-  onMinChange,
-  onMaxChange,
-  onQueryChange,
-}: TourListViewProps) {
   return (
     <PageLayout
-      // ✅ Khe 1: Header — tiêu đề + ô tìm kiếm
       header={
         <>
           <h1>Khám phá Huế qua {totalCount} hành trình</h1>
           <SearchBox
             value={query}
-            onChange={onQueryChange}
+            onChange={setQuery}
             placeholder="Tìm tên tour (VD: Đại Nội)..."
           />
         </>
       }
-
-      // ✅ Khe 2: Sidebar — bộ lọc giá
       sidebar={
         <>
           <h2>Bộ lọc</h2>
           <PriceFilter
             minPrice={minPrice}
             maxPrice={maxPrice}
-            onMinChange={onMinChange}
-            onMaxChange={onMaxChange}
+            onMinChange={setMinPrice}
+            onMaxChange={setMaxPrice}
           />
         </>
       }
-
-      // ✅ Khe 3: Main — thống kê + danh sách tour
       main={
         <>
           <p className="filter-summary">

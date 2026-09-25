@@ -1,11 +1,11 @@
-// App.tsx — Buổi 9 · Lab 4: Trang danh mục hoàn chỉnh
+// App.tsx — Buổi 10 · Lab 1
 // INT.7.18 — Web FrontEnd nâng cao
 
-import TrangDanhMuc from './pages/TrangDanhMuc';
+import { TourListPage } from './pages/TourListPage';
 import './App.css';
 
 function App() {
-  return <TrangDanhMuc />;
+  return <TourListPage />;
 }
 
 export default App;

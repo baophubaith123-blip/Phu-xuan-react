@@ -1,4 +1,4 @@
-/* App.css — Buổi 9 · Lab 4: Trang danh mục */
+/* App.css — Buổi 10 · Lab 1: Lifting State Up */
 
 * {
   box-sizing: border-box;
@@ -12,17 +12,115 @@ body {
   line-height: 1.5;
 }
 
-h2 {
-  color: #1b2a4a;
-  margin-top: 28px;
-  margin-bottom: 12px;
-  font-size: 1.15rem;
-  padding-bottom: 6px;
-  border-bottom: 2px solid #e5e7eb;
+.tour-list-page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px;
 }
 
-.luoi-dia-danh {
+.tour-list-page > h1 {
+  color: #1b2a4a;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* --- Price Filter --- */
+.price-filter {
+  background: #ffffff;
+  border: 1px solid #cbd2d9;
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.price-filter label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #1b2a4a;
+}
+
+.price-filter input[type='range'] {
+  width: 200px;
+  accent-color: #0f6e6a;
+  cursor: pointer;
+}
+
+.price-filter span {
+  color: #dc2626;
+  font-weight: 700;
+  min-width: 90px;
+  text-align: right;
+}
+
+/* --- Filter Summary --- */
+.filter-summary {
+  color: #52606d;
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+}
+
+/* --- Tour Grid --- */
+.tour-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 16px;
+}
+
+/* --- Tour Card --- */
+.tour-card {
+  border: 1px solid #cbd2d9;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tour-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.tour-card__anh {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+}
+
+.tour-card__than {
+  padding: 12px 14px;
+}
+
+.tour-card__ten {
+  margin: 0 0 6px;
+  color: #1b2a4a;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.tour-card__hot {
+  background: #dc2626;
+  color: #ffffff;
+  font-size: 0.65rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.tour-card__gia {
+  margin: 0;
+  color: #0f6e6a;
+  font-weight: 700;
+  font-size: 0.95rem;
 }

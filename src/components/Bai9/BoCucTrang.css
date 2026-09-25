@@ -1,0 +1,37 @@
+/* BoCucTrang.css — Layout 3 vùng (Buổi 9 · Lab 3) */
+
+.bo-cuc {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f9fafb;
+}
+
+/* --- Vùng 1: Header --- */
+.bo-cuc__dau {
+  background: #1b2a4a;
+  color: #ffffff;
+  padding: 14px 24px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+/* --- Vùng 2: Main (nội dung chính) --- */
+.bo-cuc__giua {
+  flex: 1;
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* --- Vùng 3: Footer --- */
+.bo-cuc__chan {
+  text-align: center;
+  color: #52606d;
+  padding: 16px;
+  border-top: 1px solid #cbd2d9;
+  background: #ffffff;
+  font-size: 0.9rem;
+}

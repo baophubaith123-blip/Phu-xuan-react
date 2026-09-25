@@ -1,8 +1,8 @@
-// App.tsx — Buổi 10 · Lab 4: Chuyển tab giữa Tour và Di tích
+// App.tsx — Buổi 10 · Lab 5: View gọi hook trực tiếp
 // INT.7.18 — Web FrontEnd nâng cao
 
 import { useState } from 'react';
-import { TourListContainer } from './features/tours/TourListContainer';
+import { TourListView } from './features/tours/TourListView';
 import { DiTichListView } from './features/ditich/DiTichListView';
 import './App.css';
 
@@ -28,7 +28,7 @@ function App() {
         </button>
       </nav>
 
-      {trang === 'tour' ? <TourListContainer /> : <DiTichListView />}
+      {trang === 'tour' ? <TourListView /> : <DiTichListView />}
     </>
   );
 }

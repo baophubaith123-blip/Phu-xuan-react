@@ -1,21 +1,25 @@
-// TourListContainer.tsx — Thành phần chứa state và logic
-// Buổi 10 · Lab 2: Container (logic) tách khỏi View (hiển thị)
+// TourListContainer.tsx — Container với 3 state: minPrice, maxPrice, query
+// Buổi 10 · Lab 3: Lifting state lần 2 + logic lọc kết hợp
 // INT.7.18 — Web FrontEnd nâng cao
 
 import { useState } from 'react';
 import { tours } from '../../data/tours';
 import { TourListView } from './TourListView';
 
-// ✅ Container chịu trách nhiệm: state + logic lọc
-// KHÔNG đụng đến JSX của trang (đó là việc của View)
 export function TourListContainer() {
+  // ✅ 3 state — đều nằm ở Container (cha chung gần nhất)
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(1000000);
+  const [query, setQuery] = useState('');
 
-  // Logic lọc — tính lại mỗi khi state đổi
-  const filteredTours = tours.filter(
-    (t) => t.price >= minPrice && t.price <= maxPrice
-  );
+  // ✅ Lọc kết hợp: theo giá VÀ theo từ khóa
+  const normalized = query.trim().toLowerCase();
+
+  const filteredTours = tours
+    .filter((t) => t.price >= minPrice && t.price <= maxPrice)
+    .filter((t) =>
+      normalized === '' ? true : t.name.toLowerCase().includes(normalized)
+    );
 
   return (
     <TourListView
@@ -23,8 +27,10 @@ export function TourListContainer() {
       totalCount={tours.length}
       minPrice={minPrice}
       maxPrice={maxPrice}
+      query={query}
       onMinChange={setMinPrice}
       onMaxChange={setMaxPrice}
+      onQueryChange={setQuery}
     />
   );
 }

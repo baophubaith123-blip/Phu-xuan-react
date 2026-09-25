@@ -1,0 +1,62 @@
+/* PageLayout.css — Layout 3 khe (Buổi 10 · Lab 3) */
+
+.page-layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  min-height: 100vh;
+}
+
+/* --- Khe header --- */
+.page-layout__header {
+  background: #ffffff;
+  border: 1px solid #cbd2d9;
+  border-radius: 12px;
+  padding: 24px 28px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.page-layout__header h1 {
+  color: #1b2a4a;
+  margin: 0 0 16px;
+  font-size: 1.5rem;
+}
+
+/* --- Khu vực body: sidebar + main --- */
+.page-layout__body {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .page-layout__body {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Khe sidebar --- */
+.page-layout__sidebar {
+  background: #ffffff;
+  border: 1px solid #cbd2d9;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  position: sticky;
+  top: 20px;
+}
+
+.page-layout__sidebar h2 {
+  color: #0f6e6a;
+  font-size: 1rem;
+  margin: 0 0 16px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+/* --- Khe main --- */
+.page-layout__main {
+  min-width: 0;   /* ✅ Quan trọng: cho phép grid cell co lại */
+}

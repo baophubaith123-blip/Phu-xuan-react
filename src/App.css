@@ -1,4 +1,4 @@
-/* App.css — Buổi 10 · Lab 1: Lifting State Up */
+/* App.css — Buổi 10: Layout + Tour Grid */
 
 * {
   box-sizing: border-box;
@@ -12,41 +12,27 @@ body {
   line-height: 1.5;
 }
 
-.tour-list-page {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 24px;
-}
+/* ============================================================
+   Price Filter — Nằm dọc trong sidebar
+   ============================================================ */
 
-.tour-list-page > h1 {
-  color: #1b2a4a;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-/* --- Price Filter --- */
 .price-filter {
-  background: #ffffff;
-  border: 1px solid #cbd2d9;
-  border-radius: 10px;
-  padding: 16px 20px;
-  margin-bottom: 16px;
   display: flex;
-  gap: 24px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .price-filter label {
   display: flex;
-  align-items: center;
-  gap: 8px;
+  flex-direction: column;
+  gap: 6px;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: #1b2a4a;
 }
 
 .price-filter input[type='range'] {
-  width: 200px;
+  width: 100%;
   accent-color: #0f6e6a;
   cursor: pointer;
 }
@@ -54,25 +40,40 @@ body {
 .price-filter span {
   color: #dc2626;
   font-weight: 700;
-  min-width: 90px;
+  font-size: 0.9rem;
   text-align: right;
 }
 
-/* --- Filter Summary --- */
+/* ============================================================
+   Filter Summary
+   ============================================================ */
+
 .filter-summary {
   color: #52606d;
   font-size: 0.9rem;
-  margin-bottom: 16px;
+  margin: 0 0 16px;
+  padding: 8px 12px;
+  background: #ffffff;
+  border: 1px solid #cbd2d9;
+  border-radius: 8px;
+  font-weight: 600;
 }
 
-/* --- Tour Grid --- */
+/* ============================================================
+   Tour Grid — Lưới responsive
+   ============================================================ */
+
 .tour-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 16px;
+  width: 100%;
 }
 
-/* --- Tour Card --- */
+/* ============================================================
+   Tour Card
+   ============================================================ */
+
 .tour-card {
   border: 1px solid #cbd2d9;
   border-radius: 10px;
@@ -80,6 +81,8 @@ body {
   background: #ffffff;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .tour-card:hover {
@@ -89,43 +92,105 @@ body {
 
 .tour-card__anh {
   width: 100%;
-  height: 160px;
+  height: 140px;
   object-fit: cover;
   display: block;
 }
 
 .tour-card__than {
   padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
 }
 
 .tour-card__ten {
-  margin: 0 0 6px;
+  margin: 0;
   color: #1b2a4a;
-  font-size: 1.05rem;
+  font-size: 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 6px;
+  line-height: 1.3;
 }
 
 .tour-card__hot {
   background: #dc2626;
   color: #ffffff;
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   padding: 2px 6px;
   border-radius: 4px;
   font-weight: 700;
   letter-spacing: 0.5px;
+  flex-shrink: 0;
 }
 
 .tour-card__gia {
   margin: 0;
   color: #0f6e6a;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
+
 /* ============================================================
-   Lab 2 Buổi 10 — Empty state
+   Search Box
+   ============================================================ */
+
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 10px 40px 10px 14px;
+  border: 2px solid #cbd2d9;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.search-box input:focus {
+  border-color: #0f6e6a;
+  box-shadow: 0 0 0 3px rgba(15, 110, 106, 0.15);
+}
+
+.search-box input::placeholder {
+  color: #9ca3af;
+}
+
+.search-box__clear {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #e5e7eb;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #6b7280;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.search-box__clear:hover {
+  background: #dc2626;
+  color: #ffffff;
+}
+
+/* ============================================================
+   Empty State
    ============================================================ */
 
 .empty-state {

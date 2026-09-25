@@ -1,20 +1,27 @@
-// App.tsx — Buổi 8: Biểu mẫu có kiểm soát
+// App.tsx — Buổi 9: Tái sử dụng & Kết hợp thành phần
 // INT.7.18 — Web FrontEnd nâng cao
 
-import './styles/Bai8.css';
-import TrangThemDiaDiem from './pages/TrangThemDiaDiem';
-import FormGopY from './features/gop-y/FormGopY';
+import TheDiaDanh from './components/Bai9/TheDiaDanh';
+import { DANH_SACH_DIA_DANH } from './du-lieu/diaDanh';
+import './App.css';
 
-export default function App() {
+function App() {
   return (
-    <main className="trang-Bai8">
-      <h1>Bài 8 — Biểu mẫu có kiểm soát</h1>
+    <div className="trang">
+      <h1>Khám phá Cố đô Huế</h1>
 
-      {/* ✅ Lab 5: Trang có khung xem trước (cha giữ state) */}
-      <TrangThemDiaDiem />
-
-      {/* Form Góp ý (vẫn dùng hook độc lập) */}
-      <FormGopY />
-    </main>
+      <div className="luoi-dia-danh">
+        {DANH_SACH_DIA_DANH.map((dd) => (
+          <TheDiaDanh
+            key={dd.id}
+            anh={dd.anh}
+            ten={dd.ten}
+            moTa={dd.moTa}
+          />
+        ))}
+      </div>
+    </div>
   );
 }
+
+export default App;

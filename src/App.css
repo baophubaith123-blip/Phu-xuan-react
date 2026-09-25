@@ -124,3 +124,17 @@ body {
   font-weight: 700;
   font-size: 0.95rem;
 }
+/* ============================================================
+   Lab 2 Buổi 10 — Empty state
+   ============================================================ */
+
+.empty-state {
+  text-align: center;
+  padding: 32px 24px;
+  background: #fef3c7;
+  border: 1px solid #fbbf24;
+  border-radius: 10px;
+  color: #92400e;
+  font-style: italic;
+  font-size: 0.95rem;
+}

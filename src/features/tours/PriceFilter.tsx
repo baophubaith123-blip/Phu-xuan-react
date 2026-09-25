@@ -1,5 +1,5 @@
 // PriceFilter.tsx — BẢN ĐÚNG: Presentational component (không có state)
-// Buổi 10 · Lab 1: Nhận value + callback từ cha
+// Buổi 10 · Lab 1+2: Nhận value + callback từ cha
 // INT.7.18 — Web FrontEnd nâng cao
 
 interface PriceFilterProps {
